@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import pokeapi from '../../apis/pokeapi';
 import { FaTrashAlt, FaPlusSquare } from 'react-icons/fa';
 
+import Egg from '../../assets/images/egg.gif';
+
 class PokemonCard extends Component {
     state = {
         spriteURL: null,
@@ -35,7 +37,10 @@ class PokemonCard extends Component {
                 {
                     this.state.spriteURL 
                         ? <img src={this.state.spriteURL} alt={this.state.name}/>
-                        : <h1>hello</h1>
+                        : ( <div className="pokemonCard__egg">
+                            <img src={Egg} alt="egg" />
+                        </div>
+                        )      
                 }
             </div>
         )

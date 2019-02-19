@@ -9,7 +9,7 @@ import PokemonCard from './PokemonCard';
 
 class PokemonPark extends Component {
     state = {
-        pokemon: ['bulbasaur', 'cloyster', 'nuzleaf', 'dragonite', 'blastoise', 'mewtwo']
+        pokemon: ['gengar', 'cloyster', 'metagross', 'steelix', 'litten', 'ninetales']
     }
 
 

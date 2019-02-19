@@ -1,21 +1,23 @@
 .pokemonCard {
     // height: 100px;
     align-self: center;
-        border: 1px solid rgb(187, 187, 187);
+        border: 2px solid rgb(155, 155, 155);
         border-radius: 10px;
         // background-image: linear-gradient(to bottom right, lightgrey, #fff);
         -webkit-box-shadow: 10px 10px 62px -23px rgba(0,0,0,0.75);
         -moz-box-shadow: 10px 10px 62px -23px rgba(0,0,0,0.75);
         box-shadow: 10px 10px 62px -23px rgba(0,0,0,0.75);
         height: 180px;
-        background: linear-gradient(to bottom right, rgba(211, 211, 211, 0.3), rgba(255, 255, 255, 0.1)), url('../assets/images/bg1.png') no-repeat center center fixed; 
-        background-position: 0% 200%;
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
-        // background-size:contain;
+        // background: linear-gradient(to bottom right, rgba(211, 211, 211, 0.3), rgba(255, 255, 255, 0.1)), url('../assets/images/bg1.png') no-repeat center center fixed; 
+        // background-position: 0% 200%;
+        background: url('../assets/images/bg1.png') no-repeat center bottom;
+        // -webkit-background-size: cover;
+        // -moz-background-size: cover;
+        // -o-background-size: cover;
+        // background-size: cover;
+        background-size:cover;
     img {
+        
         margin: 0 auto;
         width: 100%;
     }
@@ -35,5 +37,12 @@
             }
         }
         
+    }
+
+    .pokemonCard__egg {
+        position: relative;
+        top: 10%;
+        width: 60%;
+        margin: 0 auto;
     }
 }
