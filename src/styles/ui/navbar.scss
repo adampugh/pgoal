@@ -1,0 +1,11 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 20px;
+    width: 100%;
+    .logo {
+        img {
+            max-width: 220px;
+        }
+    }
+}
