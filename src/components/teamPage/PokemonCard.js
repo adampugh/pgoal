@@ -37,9 +37,10 @@ class PokemonCard extends Component {
                 {
                     this.state.spriteURL 
                         ? <img src={this.state.spriteURL} alt={this.state.name}/>
-                        : ( <div className="pokemonCard__egg">
-                            <img src={Egg} alt="egg" />
-                        </div>
+                        : ( 
+                            <div className="pokemonCard__egg">
+                                <img src={Egg} alt="egg" />
+                            </div>
                         )      
                 }
             </div>

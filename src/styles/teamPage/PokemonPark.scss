@@ -1,0 +1,34 @@
+.pokemonPark {
+    max-width: 900px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.pokemonPark__card {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 15px;
+    height: 100px;
+}
+
+@media (max-width: $desktop-breakpoint) {
+    .pokemonPark {
+        margin: 0 20px;
+    }
+
+    .pokemonPark__card { 
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 20px;
+    }
+}
+
+@media (max-width: $tablet-breakpoint) {
+    .pokemonPark {
+        margin: 0 20px;
+    }
+
+    .pokemonPark__card { 
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 20px;
+    }
+}

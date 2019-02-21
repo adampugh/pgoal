@@ -1,30 +1,38 @@
 import React, { Component } from 'react';
-import pokeapi from '../../apis/pokeapi';
+import { connect } from 'react-redux';
 
 import Navbar from '../ui/navbar';
-import PokemonPark from './PokemonPark';
-// import PokemonCard from './PokemonCard';
+import TeamCard from './TeamCard';
+
+// each team should be a link to a specific page
+// addNewTeam fn + action + reducer
+// deleteTeam fn + action + reducer
+// setup db - firebase?
 
 class Dashboard extends Component {
-
-    componentDidMount() {
-        pokeapi.get('/pokemon')
-            .then(response => {
-                console.log(response.data.results);
-                response.data.results.map(pokemon => {
-                    console.log(pokemon.name);
-                });
-            });
+    addNewTeam = () => {
+        // redux action to add new team to reducer
     }
 
+    deleteTeam = () => {
+        // redux action to delete team
+    }
+    
     render() {
         return (
             <>
-                <Navbar />
-                <PokemonPark />
+            <Navbar />
+            {
+                this.props.teams.map(team => <TeamCard  team={team}/>)
+            }
             </>
-        );
+        )
     }
 }
 
-export default Dashboard;
+const mapToStateToProps = (state) => ({
+    teams: state.teams
+});
+
+
+export default connect(mapToStateToProps)(Dashboard);

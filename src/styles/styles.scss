@@ -1,9 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Lato');
-
+@import "./base/reset.scss";
 @import "./index.scss";
 
 @import "./ui/navbar.scss";
 
-@import "./dashboard/PokemonPark.scss";
+@import "./dashboard/TeamCard.scss";
 
-@import "./dashboard/PokemonCard.scss";
+@import "./teamPage/PokemonPark.scss";
+@import "./teamPage/TaskCard.scss";
+@import "./teamPage/PokemonCard.scss";

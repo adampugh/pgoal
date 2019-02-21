@@ -2,7 +2,12 @@ body, html {
     margin: 0;
     padding: 0;
     font-family: 'Lato', sans-serif;
+    box-sizing: border-box;
 }
+
+$desktop-breakpoint: 62rem;
+$tablet-breakpoint: 40rem;
+
 
 .container {
     margin: 0 auto;
