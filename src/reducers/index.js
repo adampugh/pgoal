@@ -6,6 +6,7 @@ const initialState = {
             name: 'development',
             pokemon: [{
                 name: 'bulbasaur',
+                sprite: '',
                 todos: [{
                     text: 'complete course',
                     complete: false
