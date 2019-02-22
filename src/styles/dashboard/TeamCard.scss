@@ -11,4 +11,11 @@
 
 .teamCard__pokemon {
     text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    height: 96px;
+}
+
+.teamCard__plus {
+    align-self: center;
 }

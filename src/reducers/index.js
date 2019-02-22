@@ -1,4 +1,5 @@
 import actions from '../actions';
+import { FaPlusSquare } from 'react-icons/fa';
 
 const initialState = {
     teams: [
@@ -6,7 +7,7 @@ const initialState = {
             name: 'development',
             pokemon: [{
                 name: 'bulbasaur',
-                sprite: '',
+                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png',
                 todos: [{
                     text: 'complete course',
                     complete: false
@@ -26,21 +27,6 @@ const initialState = {
             }, {
                 name: 'abra'
             }]
-        }, {
-            name: 'language',
-            pokemon: [{
-                name: 'bidoof',
-            }, {
-                name: 'machamp'
-            }, {
-                name: 'porygon'
-            }, {
-                name: 'muk'
-            }, {
-                name: 'arbok'
-            }, {
-                name: 'garchomp'
-            }]
         }
     ]
 }
@@ -48,7 +34,21 @@ const initialState = {
 export default function reducer(state = initialState, action) {
     switch (action.type) {
     // cases
-    default:
-        return state
+        case 'CREATE_TEAM':
+            return {
+                teams: [...state.teams, { 
+                    name: 'new team',
+                    pokemon: [
+                        { name: '', sprite: '', todos: []},
+                        { name: '', sprite: '', todos: []},
+                        { name: '', sprite: '', todos: []},
+                        { name: '', sprite: '', todos: []},
+                        { name: '', sprite: '', todos: []},
+                        { name: '', sprite: '', todos: []}
+                    ]
+                }]
+            }
+        default:
+            return state
     }
 }

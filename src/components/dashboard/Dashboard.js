@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { createTeam } from '../../actions';
 
 import Navbar from '../ui/navbar';
 import TeamCard from './TeamCard';
@@ -10,8 +11,9 @@ import TeamCard from './TeamCard';
 // setup db - firebase?
 
 class Dashboard extends Component {
-    addNewTeam = () => {
+    handleCreateTeam = () => {
         // redux action to add new team to reducer
+        this.props.createTeam();
     }
 
     deleteTeam = () => {
@@ -23,8 +25,9 @@ class Dashboard extends Component {
             <>
             <Navbar />
             {
-                this.props.teams.map(team => <TeamCard  team={team}/>)
+                this.props.teams.map((team, i) => <TeamCard  team={team} key={i} />)
             }
+            <button onClick={this.handleCreateTeam}>Create new team</button>
             </>
         )
     }
@@ -35,4 +38,4 @@ const mapToStateToProps = (state) => ({
 });
 
 
-export default connect(mapToStateToProps)(Dashboard);
+export default connect(mapToStateToProps, { createTeam })(Dashboard);

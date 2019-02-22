@@ -1,24 +1,25 @@
 import React, { Component } from 'react';
 import pokeapi from '../../apis/pokeapi';
+import { FaPlusSquare } from 'react-icons/fa';
 
 // don't fetch sprites - should be saved when pokemon is added
 
 class TeamCard extends Component {
-    state = {
-        teamSprites: []
-    }
+    // state = {
+    //     teamSprites: []
+    // }
 
 
     componentDidMount() {
         // get all sprites
-        this.props.team.pokemon.map(pokemon => {
-            pokeapi.get(`/pokemon/${pokemon.name}`)
-                .then(pokemon => {
-                    this.setState({ 
-                        teamSprites: [...this.state.teamSprites, pokemon.data.sprites.front_default]
-                    });
-            });
-        });
+        // this.props.team.pokemon.map(pokemon => {
+        //     pokeapi.get(`/pokemon/${pokemon.name}`)
+        //         .then(pokemon => {
+        //             this.setState({ 
+        //                 teamSprites: [...this.state.teamSprites, pokemon.data.sprites.front_default]
+        //             });
+        //     });
+        // });
     }
 
     render() {
@@ -30,9 +31,10 @@ class TeamCard extends Component {
                     <h1>{name}</h1>
                     <div className="teamCard__pokemon">
                     {
-                        this.state.teamSprites 
-                            ? this.state.teamSprites.map(sprite => <img src={sprite} />)
-                            : <div>...loading</div>
+                        pokemon.map(pokemon => pokemon.sprite 
+                            ? <img src={pokemon.sprite} /> 
+                            : <div className="teamCard__plus"><FaPlusSquare /></div>
+                        )
                     }
                     </div>
                 </div>
@@ -41,4 +43,5 @@ class TeamCard extends Component {
     };
 };
 
-export default TeamCard;
+
+export default (TeamCard);
