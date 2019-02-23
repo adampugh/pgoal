@@ -19,7 +19,7 @@ class Dashboard extends Component {
     handleDeleteTeam = (id) => {
         // redux action to delete team
         // this.props.deleteTeam();
-        alert(id);
+        this.props.deleteTeam(id);
     }
     
     render() {

@@ -6,6 +6,6 @@ export const createTeam = () => async dispatch  => {
 };
 
 
-export const deleteTeam = () => dispatch => {
-    dispatch({ type: 'DELETE_TEAM' });
+export const deleteTeam = (id) => dispatch => {
+    dispatch({ type: 'DELETE_TEAM', id });
 };

@@ -15,6 +15,11 @@
     h1 {
         display: inline;
     }
+    i, svg {
+        &:hover {
+            cursor: pointer;
+        }
+    }
 }
 
 .teamCard__pokemon {

@@ -50,6 +50,10 @@ export default function reducer(state = initialState, action) {
                         { id: uuid(), name: '', sprite: '', todos: []}
                     ]
                 }]
+            };
+        case 'DELETE_TEAM':
+            return {
+                teams: state.teams.filter(team => team.id !== action.id)
             }
         default:
             return state
