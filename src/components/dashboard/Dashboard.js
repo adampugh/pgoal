@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { createTeam } from '../../actions';
+import { createTeam, deleteTeam } from '../../actions';
 
 import Navbar from '../ui/navbar';
 import TeamCard from './TeamCard';
@@ -16,8 +16,10 @@ class Dashboard extends Component {
         this.props.createTeam();
     }
 
-    deleteTeam = () => {
+    handleDeleteTeam = (id) => {
         // redux action to delete team
+        // this.props.deleteTeam();
+        alert(id);
     }
     
     render() {
@@ -25,7 +27,10 @@ class Dashboard extends Component {
             <>
             <Navbar />
             {
-                this.props.teams.map((team, i) => <TeamCard  team={team} key={i} />)
+                this.props.teams.map(team => <TeamCard
+                    team={team} 
+                    key={team.id} 
+                    handleDeleteTeam={() => this.handleDeleteTeam(team.id)}/>)
             }
             <button onClick={this.handleCreateTeam}>Create new team</button>
             </>
@@ -38,4 +43,4 @@ const mapToStateToProps = (state) => ({
 });
 
 
-export default connect(mapToStateToProps, { createTeam })(Dashboard);
+export default connect(mapToStateToProps, { createTeam, deleteTeam })(Dashboard);

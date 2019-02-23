@@ -1,9 +1,11 @@
 import actions from '../actions';
-import { FaPlusSquare } from 'react-icons/fa';
+import uuid from 'uuid/v1';
+import { FaPlusSquare, FaUserMinus } from 'react-icons/fa';
 
 const initialState = {
     teams: [
         {
+            id: '1234',
             name: 'development',
             pokemon: [{
                 name: 'bulbasaur',
@@ -37,14 +39,15 @@ export default function reducer(state = initialState, action) {
         case 'CREATE_TEAM':
             return {
                 teams: [...state.teams, { 
+                    id: uuid(),
                     name: 'new team',
                     pokemon: [
-                        { name: '', sprite: '', todos: []},
-                        { name: '', sprite: '', todos: []},
-                        { name: '', sprite: '', todos: []},
-                        { name: '', sprite: '', todos: []},
-                        { name: '', sprite: '', todos: []},
-                        { name: '', sprite: '', todos: []}
+                        { id: uuid(), name: '', sprite: '', todos: []},
+                        { id: uuid(), name: '', sprite: '', todos: []},
+                        { id: uuid(), name: '', sprite: '', todos: []},
+                        { id: uuid(), name: '', sprite: '', todos: []},
+                        { id: uuid(), name: '', sprite: '', todos: []},
+                        { id: uuid(), name: '', sprite: '', todos: []}
                     ]
                 }]
             }

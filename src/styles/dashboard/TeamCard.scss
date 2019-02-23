@@ -9,6 +9,14 @@
     max-width: 650px;
 }
 
+.teamCard__title {
+    display: flex;
+    justify-content: space-between;
+    h1 {
+        display: inline;
+    }
+}
+
 .teamCard__pokemon {
     text-align: center;
     display: grid;

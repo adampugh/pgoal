@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import pokeapi from '../../apis/pokeapi';
-import { FaPlusSquare } from 'react-icons/fa';
+import { FaPlusSquare, FaTrashAlt } from 'react-icons/fa';
 
 // don't fetch sprites - should be saved when pokemon is added
 
@@ -28,7 +28,10 @@ class TeamCard extends Component {
         return (
             <div className="container">
                 <div className="teamCard">
-                    <h1>{name}</h1>
+                    <div className="teamCard__title">
+                        <h1>{name}</h1>
+                        <FaTrashAlt onClick={this.props.handleDeleteTeam} />
+                    </div>
                     <div className="teamCard__pokemon">
                     {
                         pokemon.map(pokemon => pokemon.sprite 
