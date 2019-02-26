@@ -16,6 +16,13 @@ class PokemonCard extends Component {
         }
     }
 
+    // add pokemon 
+    // search + select pokemon
+    // work out number of evolutions - before + after + 1 for current stage - add 6 stages (5 stars + egg)
+    // send to redux the current stage + stages + name + sprite + percentage complete 
+
+
+
     getSprite = () => {
         pokeapi.get(`/pokemon/${this.props.pokemon}`)
             .then(pokemon => { 

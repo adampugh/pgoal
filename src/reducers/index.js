@@ -1,6 +1,8 @@
 import actions from '../actions';
 import uuid from 'uuid/v1';
+import pokemonRandomName from 'pokemon-random-name';
 import { FaPlusSquare, FaUserMinus } from 'react-icons/fa';
+
 
 const initialState = {
     teams: [
@@ -40,7 +42,7 @@ export default function reducer(state = initialState, action) {
             return {
                 teams: [...state.teams, { 
                     id: uuid(),
-                    name: 'new team',
+                    name: `Team ${pokemonRandomName()}`,
                     pokemon: [
                         { id: uuid(), name: '', sprite: '', todos: []},
                         { id: uuid(), name: '', sprite: '', todos: []},

@@ -32,7 +32,9 @@ class Dashboard extends Component {
                     key={team.id} 
                     handleDeleteTeam={() => this.handleDeleteTeam(team.id)}/>)
             }
-            <button onClick={this.handleCreateTeam}>Create new team</button>
+            <div className="teamCard teamCard--create">
+                <button onClick={this.handleCreateTeam}>Create new team</button>
+            </div>
             </>
         )
     }
