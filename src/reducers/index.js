@@ -10,6 +10,7 @@ const initialState = {
             id: '1234',
             name: 'development',
             pokemon: [{
+                id: '1234',
                 name: 'bulbasaur',
                 sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png',
                 todos: [{
@@ -44,12 +45,12 @@ export default function reducer(state = initialState, action) {
                     id: uuid(),
                     name: `Team ${pokemonRandomName()}`,
                     pokemon: [
-                        { id: uuid(), name: '', sprite: '', todos: []},
-                        { id: uuid(), name: '', sprite: '', todos: []},
-                        { id: uuid(), name: '', sprite: '', todos: []},
-                        { id: uuid(), name: '', sprite: '', todos: []},
-                        { id: uuid(), name: '', sprite: '', todos: []},
-                        { id: uuid(), name: '', sprite: '', todos: []}
+                        { id: uuid(), name: '', sprite: '', skill: 'Skill', todos: []},
+                        { id: uuid(), name: '', sprite: '', skill: 'Skill', todos: []},
+                        { id: uuid(), name: '', sprite: '', skill: 'Skill', todos: []},
+                        { id: uuid(), name: '', sprite: '', skill: 'Skill', todos: []},
+                        { id: uuid(), name: '', sprite: '', skill: 'Skill', todos: []},
+                        { id: uuid(), name: '', sprite: '', skill: 'Skill', todos: []}
                     ]
                 }]
             };

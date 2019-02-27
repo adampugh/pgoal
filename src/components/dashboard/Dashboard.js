@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
 import { createTeam, deleteTeam } from '../../actions';
 
 import Navbar from '../ui/navbar';
@@ -27,10 +28,15 @@ class Dashboard extends Component {
             <>
             <Navbar />
             {
-                this.props.teams.map(team => <TeamCard
-                    team={team} 
-                    key={team.id} 
-                    handleDeleteTeam={() => this.handleDeleteTeam(team.id)}/>)
+                this.props.teams.map(team => 
+                    (
+                        <TeamCard
+                            team={team} 
+                            key={team.id} 
+                            handleDeleteTeam={() => this.handleDeleteTeam(team.id)} 
+                        />
+                   )
+                )
             }
             <div className="teamCard teamCard--create">
                 <button onClick={this.handleCreateTeam}>Create new team</button>
