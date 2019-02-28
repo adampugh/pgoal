@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import pokeapi from '../../apis/pokeapi';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { addPokemon } from '../../actions';
+import { addPokemon, deletePokemon } from '../../actions';
 import Modal from 'react-responsive-modal';
-import { FaTrashAlt, FaPlusSquare } from 'react-icons/fa';
+import { FaTrashAlt, FaPlusSquare, FaSearch } from 'react-icons/fa';
 
 import Egg from '../../assets/images/egg.gif';
 
@@ -12,6 +12,7 @@ import Egg from '../../assets/images/egg.gif';
 class PokemonCard extends Component {
     state = {
         open: false,
+        openDelete: false,
         query: '',
         searchResultSprite: '',
         noSearchResults: false,
@@ -33,6 +34,14 @@ class PokemonCard extends Component {
     onCloseModal = () => {
         this.resetSearch();
         this.setState({ open: false });
+    };
+
+    onOpenDeleteModal = () => {
+        this.setState({ openDelete: true });
+    };
+    
+    onCloseDeleteModal = () => {
+        this.setState({ openDelete: false });
     };
 
     handleInputChange = (e) => {
@@ -99,7 +108,6 @@ class PokemonCard extends Component {
                             percentageValue: null,
                             id: this.props.pokemon.id,
                             evolutionChainId: this.state.evolutionChainId,
-                            
                         }
                         
                         this.props.addPokemon(pokemon, this.props.teamId);
@@ -112,15 +120,15 @@ class PokemonCard extends Component {
             })
     }
 
-    // add pokemon 
-    // search + select pokemon
-    // work out number of evolutions - before + after + 1 for current stage - add 6 stages (5 stars + egg)
-    // send to redux the current stage + stages + name + sprite + percentage complete 
+    deletePokemon = () => {
+        this.props.deletePokemon(this.props.pokemon.id, this.props.teamId);
+        this.onCloseDeleteModal()
+    }
 
 
     render() {
         const { sprite, name } = this.props.pokemon;
-        const { open, searchResultSprite, noSearchResults, query } = this.state;
+        const { open, searchResultSprite, noSearchResults, query, openDelete } = this.state;
 
         return (
             <div className="pokemonCard">
@@ -131,7 +139,7 @@ class PokemonCard extends Component {
                             onChange={(e) => this.handleInputChange(e)}
                             value={query}
                         />
-                        <button onClick={e => this.searchForPokemon(e)}>Search</button>
+                        <button onClick={e => this.searchForPokemon(e)}><FaSearch /></button>
                     </form>
                     <div>
                         { searchResultSprite && (
@@ -143,8 +151,14 @@ class PokemonCard extends Component {
                         { noSearchResults && <h1>Sorry no search results</h1>}
                     </div>
                 </Modal>
+                <Modal open={openDelete} onClose={this.onCloseDeleteModal} center>
+                    <h1>Are you sure you want to delete?</h1>
+                    
+                    <button className="btn" onClick={this.deletePokemon}>Yes</button>
+                    <button className="btn" onClick={this.onCloseDeleteModal}>No</button>
+                </Modal>
                 <div className="pokemonCard__icons">
-                    <FaTrashAlt />
+                    <FaTrashAlt onClick={this.onOpenDeleteModal} />
                     <FaPlusSquare onClick={this.onOpenModal} />
                 </div>
                 {
@@ -167,4 +181,4 @@ class PokemonCard extends Component {
     }
 }
 
-export default connect(null, { addPokemon })(PokemonCard);
+export default connect(null, { addPokemon, deletePokemon })(PokemonCard);

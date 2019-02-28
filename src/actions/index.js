@@ -18,17 +18,23 @@ export const addPokemon = (pokemon, teamId) => dispatch => {
 
 
 // delete pokemon
-
+export const deletePokemon = (pokemonId, teamId) => dispatch => {
+    dispatch({ type: 'DELETE_POKEMON', pokemonId, teamId});
+}
 
 
 // evolve pokemon
 
 
+// update skill name
+export const updateSkillName = (pokemonId, teamId, skillName) => dispatch => {
+    dispatch({ type: 'UPDATE_SKILL_NAME', pokemonId, teamId, skillName });
+}
 
-// add todo
+// add task
 
 
-// complete todo
+// complete task
 
 
-// delete todo
+// delete task

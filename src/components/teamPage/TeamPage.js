@@ -7,25 +7,10 @@ import PokemonPark from './PokemonPark';
 
 
 class TeamPage extends Component {
-    state = {
-        redirect: false
-    }
-
-    componentDidMount() {
-        // if link doesn't come from homepage redirect
-        if (!this.props.team) {
-            this.setState({
-                redirect: true
-            })
-        }
-    }
 
     render() {
-        const { redirect } = this.state;
-        // const { team } = this.props.location.state;
-        
-        
-        if (redirect) {
+
+        if (!this.props.team) {
             return <Redirect to="/" />
         }
 

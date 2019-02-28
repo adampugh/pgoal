@@ -1,3 +1,26 @@
 .taskCard__title {
     text-align: center;
+    input {
+        max-width: 136px;
+        text-align: center;
+        border: none;
+    }
+}
+
+.taskCard__tasks {
+    input {
+        max-width: 116px;
+        text-align: left;
+        border: none;
+        border-bottom: 1px solid grey;
+    }
+}
+
+.taskCard__tasks__task {
+    max-width: 136px;
+    display: flexbox;
+    justify-content: space-between;
+    input {
+        display: inline;
+    }
 }

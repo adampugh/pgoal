@@ -10,7 +10,7 @@ class Card extends Component {
         return (
             <div>
                 <PokemonCard pokemon={pokemon} teamId={teamId} />
-                <TaskCard pokemon={pokemon} />
+                <TaskCard pokemon={pokemon} teamId={teamId} />
             </ div>
         )
     }
