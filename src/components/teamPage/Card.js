@@ -5,11 +5,11 @@ import TaskCard from './TaskCard';
 
 class Card extends Component {
     render() {
-        const { pokemon } = this.props;
+        const { pokemon, teamId } = this.props;
 
         return (
             <div>
-                <PokemonCard pokemon={pokemon} />
+                <PokemonCard pokemon={pokemon} teamId={teamId} />
                 <TaskCard pokemon={pokemon} />
             </ div>
         )

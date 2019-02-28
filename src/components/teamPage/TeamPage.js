@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import pokeapi from '../../apis/pokeapi';
 import { Redirect } from 'react-router';
+import { connect } from 'react-redux'; 
 
 import Navbar from '../ui/navbar';
 import PokemonPark from './PokemonPark';
-// import PokemonCard from './PokemonCard';
+
 
 class TeamPage extends Component {
     state = {
@@ -13,28 +13,18 @@ class TeamPage extends Component {
 
     componentDidMount() {
         // if link doesn't come from homepage redirect
-        if (!this.props.location.state) {
+        if (!this.props.team) {
             this.setState({
                 redirect: true
             })
         }
     }
 
-    // componentDidMount() {
-    //     pokeapi.get('/pokemon')
-    //         .then(response => {
-    //             console.log(response.data.results);
-    //             response.data.results.map(pokemon => {
-    //                 console.log(pokemon.name);
-    //             });
-    //         });
-
-    //     console.log(this.props.location.state.team);
-    // }
-
     render() {
         const { redirect } = this.state;
-
+        // const { team } = this.props.location.state;
+        
+        
         if (redirect) {
             return <Redirect to="/" />
         }
@@ -42,10 +32,14 @@ class TeamPage extends Component {
         return (
             <>
                 <Navbar />
-                <PokemonPark />
+                <PokemonPark team={this.props.team}/>
             </>
         );
     }
 }
 
-export default TeamPage;
+const mapStateToProps = (state, ownProps) => ({
+    team: ownProps.location.state ? state.teams.filter(team => ownProps.location.state.team.id === team.id)[0] : null
+});
+
+export default connect(mapStateToProps)(TeamPage);

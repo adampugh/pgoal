@@ -46,4 +46,10 @@
         box-sizing: border-box;
         // padding-bottom: 10px;
     }
+
+    .pokemonCard__egg--empty {
+        img {
+            opacity: 0;
+        }
+    }
 }

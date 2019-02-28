@@ -12,7 +12,9 @@ export const deleteTeam = (id) => dispatch => {
 
 
 // add pokemon
-
+export const addPokemon = (pokemon, teamId) => dispatch => {
+    dispatch({ type: 'ADD_POKEMON', pokemon, teamId})
+};
 
 
 // delete pokemon

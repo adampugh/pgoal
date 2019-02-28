@@ -7,7 +7,7 @@ import { FaPlusSquare, FaUserMinus } from 'react-icons/fa';
 const initialState = {
     teams: [
         {
-            id: '1234',
+            id: '1266634',
             name: 'development',
             pokemon: [{
                 id: '1234',
@@ -22,7 +22,7 @@ const initialState = {
                 numberOfEvolutions: 2,
                 egg: false
             }, {
-                name: 'cloyster'
+                name: ''
             }, {
                 name: 'charizard'
             }, {
@@ -57,6 +57,29 @@ export default function reducer(state = initialState, action) {
         case 'DELETE_TEAM':
             return {
                 teams: state.teams.filter(team => team.id !== action.id)
+            }
+        case 'ADD_POKEMON':
+            console.log(state);
+            return {
+                teams: state.teams.map(team => {
+                    if (team.id !== action.teamId) {
+                        return {...team}
+                    } else {
+                        return {
+                            ...team,
+                            pokemon: team.pokemon.map(pokemon => {
+                                if (pokemon.id !== action.pokemon.id) {
+                                    return {...pokemon}
+                                } else {
+                                    return {...action.pokemon}
+                                }
+                            })
+                        }   
+                    }
+                })
+
+
+
             }
         default:
             return state

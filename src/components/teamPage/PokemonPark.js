@@ -11,17 +11,15 @@ import Card from './Card';
 
 
 class PokemonPark extends Component {
-    state = {
-        pokemon: ['gengar', null, 'metagross', 'steelix', 'litten', 'ninetales']
-    }
-
-
+    
     render() {
+        const teamId = this.props.team.id;
+
         return (
             <div className="container pokemonPark">
                 <div className="pokemonPark__bg">
                     <div className="pokemonPark__card">
-                        {this.state.pokemon.map((pokemon, i) => <Card pokemon={pokemon} key={i} />)} 
+                        {this.props.team.pokemon.map((pokemon, i) => <Card pokemon={pokemon} key={i} teamId={teamId} />)} 
                     </div>
                 </div>
             </div>
