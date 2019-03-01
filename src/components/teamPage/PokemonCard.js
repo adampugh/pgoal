@@ -22,11 +22,6 @@ class PokemonCard extends Component {
         evolutionChainId: null
     }
 
-    componentDidMount() {
-        console.log(this.props.teamId);
-    }
-
-
     onOpenModal = () => {
         this.setState({ open: true });
     };
@@ -108,6 +103,7 @@ class PokemonCard extends Component {
                             percentageValue: null,
                             id: this.props.pokemon.id,
                             evolutionChainId: this.state.evolutionChainId,
+                            canEvolve: false
                         }
                         
                         this.props.addPokemon(pokemon, this.props.teamId);
@@ -127,7 +123,7 @@ class PokemonCard extends Component {
 
 
     render() {
-        const { sprite, name } = this.props.pokemon;
+        const { sprite, name, canEvolve } = this.props.pokemon;
         const { open, searchResultSprite, noSearchResults, query, openDelete } = this.state;
 
         return (
@@ -144,7 +140,7 @@ class PokemonCard extends Component {
                     <div>
                         { searchResultSprite && (
                             <div>
-                                <img src={searchResultSprite} />
+                                <img src={searchResultSprite} alt="sprite"/>
                                 <button className="btn" onClick={this.addPokemon}>Add {this.state.data.name}</button>
                             </div>
                         )}
@@ -175,6 +171,7 @@ class PokemonCard extends Component {
                                 </div>
                             )     
                 }
+                <h2>can Evolve? {canEvolve ? 'true' : 'false'}</h2>
             </div>
         )
         

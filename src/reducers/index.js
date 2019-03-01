@@ -65,7 +65,6 @@ export default function reducer(state = initialState, action) {
                 teams: state.teams.filter(team => team.id !== action.id)
             }
         case 'ADD_POKEMON':
-            console.log(state);
             return {
                 teams: state.teams.map(team => {
                     if (team.id !== action.teamId) {
@@ -122,6 +121,84 @@ export default function reducer(state = initialState, action) {
                     }
                 })
             }
+        case 'UPDATE_TASK_TEXT':
+            return {
+                teams: state.teams.map(team => {
+                    if (team.id !== action.teamId) {
+                        return {...team}
+                    } else {
+                        return {
+                            ...team,
+                            pokemon: team.pokemon.map(pokemon => {
+                                if (pokemon.id !== action.pokemonId) {
+                                    return {...pokemon}
+                                } else {
+                                    return { 
+                                        ...pokemon, 
+                                        tasks: pokemon.tasks.map((task, i) => {
+                                            if (i !== action.index) {
+                                                return {...task}
+                                            } else {
+                                                return {...task, text: action.taskText}
+                                            }
+                                        })
+                                    }
+                                }
+                            })
+                        }   
+                    }
+                })
+            }
+        case 'COMPLETE_TASK':
+            return {
+                teams: state.teams.map(team => {
+                    if (team.id !== action.teamId) {
+                        return {...team}
+                    } else {
+                        return {
+                            ...team,
+                            pokemon: team.pokemon.map(pokemon => {
+                                if (pokemon.id !== action.pokemonId) {
+                                    return {...pokemon}
+                                } else {
+                                    return { 
+                                        ...pokemon, 
+                                        tasks: pokemon.tasks.map((task, i) => {
+                                            if (i !== action.index) {
+                                                return {...task}
+                                            } else {
+                                                return {...task, complete: action.checked}
+                                            }
+                                        })
+                                    }
+                                }
+                            })
+                        }   
+                    }
+                })
+            }
+            case 'CAN_EVOLVE':
+                return {
+                    teams: state.teams.map(team => {
+                        if (team.id !== action.teamId) {
+                            return {...team}
+                        } else {
+                            return {
+                                ...team,
+                                pokemon: team.pokemon.map(pokemon => {
+                                    if (pokemon.id !== action.pokemonId) {
+                                        return {...pokemon}
+                                    } else {
+                                        return { 
+                                            ...pokemon, 
+                                            canEvolve: action.canEvolve
+                                        }
+                                    }
+                                })
+                            }   
+                        }
+                    })
+                }
         default:
             return state
     }

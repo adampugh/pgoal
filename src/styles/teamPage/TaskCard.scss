@@ -12,7 +12,7 @@
         max-width: 116px;
         text-align: left;
         border: none;
-        border-bottom: 1px solid grey;
+        // border-bottom: 1px solid grey;
     }
 }
 
@@ -20,6 +20,7 @@
     max-width: 136px;
     display: flexbox;
     justify-content: space-between;
+    border-bottom: 1px solid lightgrey;
     input {
         display: inline;
     }

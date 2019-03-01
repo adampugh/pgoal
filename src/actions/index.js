@@ -22,7 +22,6 @@ export const deletePokemon = (pokemonId, teamId) => dispatch => {
     dispatch({ type: 'DELETE_POKEMON', pokemonId, teamId});
 }
 
-
 // evolve pokemon
 
 
@@ -31,10 +30,16 @@ export const updateSkillName = (pokemonId, teamId, skillName) => dispatch => {
     dispatch({ type: 'UPDATE_SKILL_NAME', pokemonId, teamId, skillName });
 }
 
-// add task
-
+// update task
+export const updateTaskText = (pokemonId, teamId, taskText, index) => dispatch => {
+    dispatch({ type: 'UPDATE_TASK_TEXT', pokemonId, teamId, taskText, index});
+}
 
 // complete task
+export const completeTask = (pokemonId, teamId, checked, index) => dispatch => {
+    dispatch({ type: 'COMPLETE_TASK', pokemonId, teamId, checked, index});
+}
 
-
-// delete task
+export const canEvolve = (pokemonId, teamId) => dispatch => {
+    dispatch({ type: 'CAN_EVOLVE', pokemonId, teamId, canEvolve });
+}

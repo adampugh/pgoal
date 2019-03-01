@@ -1,58 +1,41 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { updateSkillName } from '../../actions';
+import { updateSkillName, canEvolve } from '../../actions';
 
+import Task from './Task';
 
 class TaskCard extends Component {
-    state = {
-        currentSkill: ''
+
+    checkCanPokemonEvolve = () => {
+        const { pokemon, teamId, canEvolve} = this.props;
+        let canPokemonEvolve = pokemon.tasks.every(task => task.complete === true);
+        console.log(canPokemonEvolve);
+        canEvolve(pokemon.id, teamId, canPokemonEvolve)
     }
-
-    componentDidMount() {
-        this.setState({ currentSkill: this.props.pokemon.skill })
-    }
-
-    handleInputChange = (e) => {
-        this.setState({ currentSkill: e.target.value });
-    }
-
-    updateSkillName = () => {
-        this.props.updateSkillName(this.props.pokemon.id, this.props.teamId, this.state.currentSkill);
-    }
-
-    addTask = () => {
-
-    }
-
-    completeTask = () => {
-
-    }
-
-    deleteTask = () => {
-
-    }
-
 
     render() {
-        const { tasks, skill } = this.props.pokemon;
-        const { currentSkill } = this.state;
+        const { tasks, id, skill } = this.props.pokemon;
+        const { teamId, updateSkillName } = this.props;
 
         return (
             <div>
                 <div className="taskCard__title">
                     <input 
-                        onChange={(e) => this.handleInputChange(e)}
-                        onBlur={this.updateSkillName}
-                        value={currentSkill} />
+                        onChange={(e) => updateSkillName(id, teamId, e.target.value)}
+                        value={skill || ''}
+                        />
                 </div>
                 <div className="taskCard__tasks">
                     {
-                        tasks.map(task => (
-                            <div className="taskCard__tasks__task">
-                                <input value={task.text} />
-                                <input type="checkbox" checked={task.complete} />
-                                <span class="checkmark"></span>
-                            </div>
+                        tasks.map((task, i) => (
+                            <Task 
+                                key={i}
+                                task={task} 
+                                index={i}
+                                teamId={teamId} 
+                                pokemonId={id}
+                                checkCanPokemonEvolve={this.checkCanPokemonEvolve}
+                            />
                         ))
                     }
                 </div>
@@ -62,4 +45,4 @@ class TaskCard extends Component {
 }
 
 
-export default connect(null, { updateSkillName })(TaskCard);
+export default connect(null, { updateSkillName, canEvolve })(TaskCard);
