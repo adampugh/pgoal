@@ -22,16 +22,25 @@ const initialState = {
             name: 'development',
             pokemon: [{
                 id: '1234',
-                name: 'bulbasaur',
+                name: 'eevee',
                 skill: 'skill',
-                sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png',
-                tasks: [{
-                    text: 'complete course',
-                    complete: false
-                }],
+                sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/133.png",
+                tasks: [
+                    { text: '', complete: false},
+                    { text: '', complete: true},
+                    { text: '', complete: true},
+                    { text: '', complete: true},
+                    { text: '', complete: true},
+                    { text: '', complete: true},
+                    { text: '', complete: true},
+                    { text: '', complete: true},
+                    { text: '', complete: true},
+                    { text: '', complete: true},
+                ],
                 canEvolve: false,
                 stages: 9,
                 currentStage: 2,
+                evolutionChainId: 67,
             }, 
             { id: uuid(), name: '', sprite: '', skill: 'Skill', tasks: setupTasks()},
             { id: uuid(), name: '', sprite: '', skill: 'Skill', tasks: setupTasks()},
@@ -51,12 +60,12 @@ export default function reducer(state = initialState, action) {
                     id: uuid(),
                     name: `Team ${pokemonRandomName()}`,
                     pokemon: [
-                        { id: uuid(), name: '', sprite: '', skill: 'Skill', tasks: setupTasks()},
-                        { id: uuid(), name: '', sprite: '', skill: 'Skill', tasks: setupTasks()},
-                        { id: uuid(), name: '', sprite: '', skill: 'Skill', tasks: setupTasks()},
-                        { id: uuid(), name: '', sprite: '', skill: 'Skill', tasks: setupTasks()},
-                        { id: uuid(), name: '', sprite: '', skill: 'Skill', tasks: setupTasks()},
-                        { id: uuid(), name: '', sprite: '', skill: 'Skill', tasks: setupTasks()}
+                        { id: uuid(), name: '', sprite: '', skill: '', tasks: setupTasks()},
+                        { id: uuid(), name: '', sprite: '', skill: '', tasks: setupTasks()},
+                        { id: uuid(), name: '', sprite: '', skill: '', tasks: setupTasks()},
+                        { id: uuid(), name: '', sprite: '', skill: '', tasks: setupTasks()},
+                        { id: uuid(), name: '', sprite: '', skill: '', tasks: setupTasks()},
+                        { id: uuid(), name: '', sprite: '', skill: '', tasks: setupTasks()}
                     ]
                 }]
             };

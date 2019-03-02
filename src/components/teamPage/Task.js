@@ -3,18 +3,15 @@ import { connect } from 'react-redux';
 import { updateTaskText, completeTask } from '../../actions';
 
 class Task extends Component {
-    handleTaskToggle = () => {
+    handleTaskToggle = async () => {
         const { completeTask, checkCanPokemonEvolve, pokemonId, teamId, task, index } = this.props;
-        completeTask(pokemonId, teamId, !task.complete, index);
-        // setTimeout(() => {
-            checkCanPokemonEvolve();
-        // }, 1000)
-        
+        await completeTask(pokemonId, teamId, !task.complete, index);
+        checkCanPokemonEvolve();
     }
 
 
     render() {
-        const { task, index, completeTask, pokemonId, teamId, updateTaskText, checkCanPokemonEvolve} = this.props;
+        const { task, index, pokemonId, teamId, updateTaskText } = this.props;
 
         return (
             <div className="taskCard__tasks__task">

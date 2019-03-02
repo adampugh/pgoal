@@ -9,7 +9,6 @@ class TaskCard extends Component {
     checkCanPokemonEvolve = () => {
         const { pokemon, teamId, canEvolve} = this.props;
         let canPokemonEvolve = pokemon.tasks.every(task => task.complete === true);
-        console.log(canPokemonEvolve);
         canEvolve(pokemon.id, teamId, canPokemonEvolve)
     }
 
@@ -23,6 +22,7 @@ class TaskCard extends Component {
                     <input 
                         onChange={(e) => updateSkillName(id, teamId, e.target.value)}
                         value={skill || ''}
+                        placeholder="Skill"
                         />
                 </div>
                 <div className="taskCard__tasks">

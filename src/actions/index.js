@@ -40,6 +40,6 @@ export const completeTask = (pokemonId, teamId, checked, index) => dispatch => {
     dispatch({ type: 'COMPLETE_TASK', pokemonId, teamId, checked, index});
 }
 
-export const canEvolve = (pokemonId, teamId) => dispatch => {
+export const canEvolve = (pokemonId, teamId, canEvolve) => dispatch => {
     dispatch({ type: 'CAN_EVOLVE', pokemonId, teamId, canEvolve });
 }

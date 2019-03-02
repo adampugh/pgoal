@@ -52,4 +52,11 @@
             opacity: 0;
         }
     }
+
+    .pokemonCard__stars {
+        width: 100%;
+        display: flex;
+        text-align: center;
+        color: white;
+    }
 }

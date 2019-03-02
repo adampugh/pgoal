@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import pokeapi from '../../apis/pokeapi';
 import { FaPlusSquare, FaTrashAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
@@ -40,7 +39,7 @@ class TeamCard extends Component {
                     <div className="teamCard__pokemon">
                     {
                         pokemon.map((pokemon, i) => pokemon.sprite 
-                            ? <img src={pokemon.sprite} key={i} /> 
+                            ? <img src={pokemon.sprite} key={i} alt="sprite"/> 
                             : <div className="teamCard__plus" key={i}><FaPlusSquare /></div>
                         )
                     }
@@ -52,4 +51,4 @@ class TeamCard extends Component {
 };
 
 
-export default (TeamCard);
+export default TeamCard;

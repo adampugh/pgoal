@@ -4,7 +4,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { addPokemon, deletePokemon } from '../../actions';
 import Modal from 'react-responsive-modal';
-import { FaTrashAlt, FaPlusSquare, FaSearch } from 'react-icons/fa';
+import { FaTrashAlt, FaPlusSquare, FaSearch, FaAngleDoubleUp, FaStar } from 'react-icons/fa';
 
 import Egg from '../../assets/images/egg.gif';
 
@@ -13,13 +13,17 @@ class PokemonCard extends Component {
     state = {
         open: false,
         openDelete: false,
+        openEvolve: false,
         query: '',
         searchResultSprite: '',
         noSearchResults: false,
         // pokemon data
         data: {},
         stages: 1,
-        evolutionChainId: null
+        totalStages: null,
+        evolutionChainId: null,
+        evolutionsArr: [],
+        evolutionsSprites: []
     }
 
     onOpenModal = () => {
@@ -39,6 +43,19 @@ class PokemonCard extends Component {
         this.setState({ openDelete: false });
     };
 
+    onOpenEvolveModal = () => {
+        this.setState({ openEvolve: true });
+        this.getEvolutions();
+    };
+    
+    onCloseEvolveModal = () => {
+        this.setState({ 
+            openEvolve: false,
+            evolutionsArr: [],
+            evolutionsSprites: []
+        });
+    };
+
     handleInputChange = (e) => {
         this.setState({
           query: e.target.value
@@ -56,11 +73,13 @@ class PokemonCard extends Component {
         });
     }
 
-    searchForPokemon = (e) => {
-        e.preventDefault();
+    searchForPokemon = (e, pokemonName) => {
+        if (e) {
+            e.preventDefault();
+        }
         this.resetSearch();
 
-        pokeapi.get(`/pokemon/${this.state.query}`)
+        pokeapi.get(`/pokemon/${ pokemonName || this.state.query }`)
             .then((response) => {
                 this.setState({
                     searchResultSprite: response.data.sprites.front_default,
@@ -121,10 +140,75 @@ class PokemonCard extends Component {
         this.onCloseDeleteModal()
     }
 
+    getEvolutions = () => {
+        const { evolutionChainId, name } = this.props.pokemon;
+        // search for evolutions
+        pokeapi.get(`/evolution-chain/${evolutionChainId}`)
+            .then((response) => {
+                this.checkPokemonChain(response.data.chain, name);
+                console.log(this.state.evolutionsArr);
+                // map the array and add sprite property
+                if (this.state.evolutionsArr.length > 0) {
+                    this.state.evolutionsArr.map(pokemon => {
+                        const { name } = pokemon.species;
+                        pokeapi.get(`/pokemon/${name}`)
+                            .then((response) => {
+                                this.setState({
+                                    evolutionsArr: this.state.evolutionsArr.map(pokemon => {
+                                        if (pokemon.species.name !== name) {
+                                            return {...pokemon}
+                                        } else {
+                                            return {...pokemon, sprite: response.data.sprites.front_default}
+                                        }
+                                    })
+                                });
+                            }).catch((error) => {
+                                
+                            })
+                    });
+                } else {
+                    console.log('final evolution');
+                }
+            });
+        // if they exist show new sprites
+        // boost stage up
+    }
+
+    checkPokemonChain = (chain, name) => {
+        // if found pokemon return array of evolutions
+        if (chain.species.name === name) {
+            this.setState({ evolutionsArr: chain.evolves_to});
+            return chain.evolves_to;
+        } else {
+            // check each evolutions name
+            chain.evolves_to.map(pokemon => {
+                if (pokemon.species.name === name) {
+                    return this.checkPokemonChain(pokemon, name);
+                }
+            });
+        }
+    }
+
+    evolvePokemon = async (name) => {
+        await pokeapi.get(`/pokemon/${name}`)
+            .then((response) => {
+                this.setState({
+                    searchResultSprite: response.data.sprites.front_default,
+                    query: '',
+                    data: response.data
+                })
+            }).catch((error) => {
+                
+            })
+
+
+        this.addPokemon();
+    }
+
 
     render() {
-        const { sprite, name, canEvolve } = this.props.pokemon;
-        const { open, searchResultSprite, noSearchResults, query, openDelete } = this.state;
+        const { sprite, name, canEvolve, stage } = this.props.pokemon;
+        const { open, searchResultSprite, noSearchResults, query, openDelete, openEvolve } = this.state;
 
         return (
             <div className="pokemonCard">
@@ -153,8 +237,20 @@ class PokemonCard extends Component {
                     <button className="btn" onClick={this.deletePokemon}>Yes</button>
                     <button className="btn" onClick={this.onCloseDeleteModal}>No</button>
                 </Modal>
+                <Modal open={openEvolve} onClose={this.onCloseEvolveModal} center>
+                    <h1>Congrats!</h1>
+                    { this.state.evolutionsArr.map((pokemon, i) => {
+                        return (
+                            <div key={i}>
+                                <img src={pokemon.sprite} alt="sprite" />
+                                <button className="btn" onClick={() => this.evolvePokemon(pokemon.species.name)}>Evolve</button>
+                            </div>
+                        )
+                    })}
+                </Modal>
                 <div className="pokemonCard__icons">
                     <FaTrashAlt onClick={this.onOpenDeleteModal} />
+                    { canEvolve && <FaAngleDoubleUp onClick={this.onOpenEvolveModal}/>}
                     <FaPlusSquare onClick={this.onOpenModal} />
                 </div>
                 {
@@ -171,7 +267,14 @@ class PokemonCard extends Component {
                                 </div>
                             )     
                 }
-                <h2>can Evolve? {canEvolve ? 'true' : 'false'}</h2>
+                {/* <h2>can Evolve? {canEvolve === true ? 'true' : 'false'}</h2> */}
+                <div className="pokemonCard__stars">
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                </div>
             </div>
         )
         
