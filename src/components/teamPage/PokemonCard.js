@@ -21,6 +21,7 @@ class PokemonCard extends Component {
         data: {},
         stages: 1,
         totalStages: null,
+        currentStage: null,
         evolutionChainId: null,
         evolutionsArr: [],
         evolutionsSprites: []
@@ -45,6 +46,7 @@ class PokemonCard extends Component {
 
     onOpenEvolveModal = () => {
         this.setState({ openEvolve: true });
+        // check if stage 1 then just update data accordingly
         this.getEvolutions();
     };
     
@@ -73,19 +75,38 @@ class PokemonCard extends Component {
         });
     }
 
-    searchForPokemon = (e, pokemonName) => {
-        if (e) {
-            e.preventDefault();
-        }
+    searchForPokemon = (e) => {
+        e.preventDefault();
         this.resetSearch();
 
-        pokeapi.get(`/pokemon/${ pokemonName || this.state.query }`)
+        // search for initial state of pokemon
+
+        pokeapi.get(`/pokemon/${ this.state.query }`)
             .then((response) => {
+                console.log(response.data);
                 this.setState({
                     searchResultSprite: response.data.sprites.front_default,
                     query: '',
                     data: response.data
                 })
+
+
+                // search evolution chain and return first evol
+                // pokeapi.get(`/pokemon-species/${ response.data.name}`)
+                //     .then((response) => {
+                //         axios.get(response.data.evolution_chain.url)
+                //             .then((response) => {
+                //                 console.log('this it now', response.data.chain.species.name)
+                //                 this.setState((prevState) => ({
+                //                     data: {
+                //                         ...prevState.data,
+                //                         name: response.data.chain.species.name
+                //                     }
+                //                 }))
+                //             })
+                //     })
+
+                
             }).catch((error) => {
                 this.setState({
                     noSearchResults: true
@@ -105,6 +126,8 @@ class PokemonCard extends Component {
 
     addPokemon = () => {
         const { data } = this.state;
+        const { skill, currentStage } = this.props.pokemon;
+        // make sure stage reverts to earliest evolution chain thing
 
         pokeapi.get(`/pokemon-species/${data.name}`)
             .then((response) => {
@@ -113,16 +136,38 @@ class PokemonCard extends Component {
                         this.setState({ evolutionChainId: response.data.id })
                         this.totalStages(response.data.chain, 1);
 
+                        // use chain id to get name of first pokemon
+                        // const name = this.getFirstEvolution(response.data.id);
+                        // const sprite = await this.getSprite(response.data.chain.species.name);
+                        // console.log(sprite);
+                        pokeapi.get(`/pokemon/${response.data.chain.species.name}`)
+                            .then((response) => {
+                                this.setState((prevState) => ({
+                                    data: {
+                                        ...prevState.data,
+                                        sprites: response.data.sprites
+                                    }
+                                }));
+
+
+
+                                
+                        });
+
+                        console.log('chain info', this.state.data.sprites);
                         const pokemon = {
-                            name: data.name,
-                            currentStage: 1,
+                            // name: data.name,
+                            name: response.data.chain.species.name,
+                            currentStage: (currentStage + 1) || 1,
                             stages: this.state.stages + 6, // 1 (egg) + 5 (stars)
                             sprite: data.sprites.front_default,
+                            // sprite: `${data.sprites}`,
                             percentage: 0,
                             percentageValue: null,
                             id: this.props.pokemon.id,
                             evolutionChainId: this.state.evolutionChainId,
-                            canEvolve: false
+                            canEvolve: false,
+                            skill: skill || ''
                         }
                         
                         this.props.addPokemon(pokemon, this.props.teamId);
@@ -146,7 +191,7 @@ class PokemonCard extends Component {
         pokeapi.get(`/evolution-chain/${evolutionChainId}`)
             .then((response) => {
                 this.checkPokemonChain(response.data.chain, name);
-                console.log(this.state.evolutionsArr);
+
                 // map the array and add sprite property
                 if (this.state.evolutionsArr.length > 0) {
                     this.state.evolutionsArr.map(pokemon => {
@@ -170,8 +215,6 @@ class PokemonCard extends Component {
                     console.log('final evolution');
                 }
             });
-        // if they exist show new sprites
-        // boost stage up
     }
 
     checkPokemonChain = (chain, name) => {
@@ -201,13 +244,13 @@ class PokemonCard extends Component {
                 
             })
 
-
         this.addPokemon();
+        this.onCloseEvolveModal();
     }
 
 
     render() {
-        const { sprite, name, canEvolve, stage } = this.props.pokemon;
+        const { sprite, name, canEvolve } = this.props.pokemon;
         const { open, searchResultSprite, noSearchResults, query, openDelete, openEvolve } = this.state;
 
         return (
@@ -242,8 +285,13 @@ class PokemonCard extends Component {
                     { this.state.evolutionsArr.map((pokemon, i) => {
                         return (
                             <div key={i}>
-                                <img src={pokemon.sprite} alt="sprite" />
-                                <button className="btn" onClick={() => this.evolvePokemon(pokemon.species.name)}>Evolve</button>
+                                { pokemon.sprite && (
+                                    <>
+                                    <img src={pokemon.sprite} alt="sprite" />
+                                    <button className="btn" onClick={() => this.evolvePokemon(pokemon.species.name)}>Evolve</button>
+                                    </>
+                                )}
+                                
                             </div>
                         )
                     })}
