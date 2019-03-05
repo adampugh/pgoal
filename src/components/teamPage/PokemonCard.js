@@ -45,8 +45,27 @@ class PokemonCard extends Component {
     };
 
     onOpenEvolveModal = () => {
+        const { currentStage, skill, evolutionChainId, id, sprite, name, stages } = this.props.pokemon
+
         this.setState({ openEvolve: true });
         // check if stage 1 then just update data accordingly
+        if (currentStage === 1) {
+            const pokemon = {
+                name,
+                currentStage: (currentStage + 1),
+                stages,
+                sprite,
+                percentage: 0,
+                percentageValue: null,
+                id,
+                evolutionChainId,
+                canEvolve: false,
+                skill: skill || ''
+            }
+            this.props.addPokemon(pokemon, this.props.teamId);
+            return this.onCloseEvolveModal();
+        }
+
         this.getEvolutions();
     };
     
@@ -79,33 +98,13 @@ class PokemonCard extends Component {
         e.preventDefault();
         this.resetSearch();
 
-        // search for initial state of pokemon
-
         pokeapi.get(`/pokemon/${ this.state.query }`)
             .then((response) => {
-                console.log(response.data);
                 this.setState({
                     searchResultSprite: response.data.sprites.front_default,
                     query: '',
                     data: response.data
                 })
-
-
-                // search evolution chain and return first evol
-                // pokeapi.get(`/pokemon-species/${ response.data.name}`)
-                //     .then((response) => {
-                //         axios.get(response.data.evolution_chain.url)
-                //             .then((response) => {
-                //                 console.log('this it now', response.data.chain.species.name)
-                //                 this.setState((prevState) => ({
-                //                     data: {
-                //                         ...prevState.data,
-                //                         name: response.data.chain.species.name
-                //                     }
-                //                 }))
-                //             })
-                //     })
-
                 
             }).catch((error) => {
                 this.setState({
@@ -127,7 +126,6 @@ class PokemonCard extends Component {
     addPokemon = () => {
         const { data } = this.state;
         const { skill, currentStage } = this.props.pokemon;
-        // make sure stage reverts to earliest evolution chain thing
 
         pokeapi.get(`/pokemon-species/${data.name}`)
             .then((response) => {
@@ -135,43 +133,54 @@ class PokemonCard extends Component {
                     .then((response) => {
                         this.setState({ evolutionChainId: response.data.id })
                         this.totalStages(response.data.chain, 1);
-
-                        // use chain id to get name of first pokemon
-                        // const name = this.getFirstEvolution(response.data.id);
-                        // const sprite = await this.getSprite(response.data.chain.species.name);
-                        // console.log(sprite);
-                        pokeapi.get(`/pokemon/${response.data.chain.species.name}`)
-                            .then((response) => {
-                                this.setState((prevState) => ({
-                                    data: {
-                                        ...prevState.data,
-                                        sprites: response.data.sprites
-                                    }
-                                }));
-
-
-
-                                
-                        });
-
-                        console.log('chain info', this.state.data.sprites);
-                        const pokemon = {
-                            // name: data.name,
-                            name: response.data.chain.species.name,
-                            currentStage: (currentStage + 1) || 1,
-                            stages: this.state.stages + 6, // 1 (egg) + 5 (stars)
-                            sprite: data.sprites.front_default,
-                            // sprite: `${data.sprites}`,
-                            percentage: 0,
-                            percentageValue: null,
-                            id: this.props.pokemon.id,
-                            evolutionChainId: this.state.evolutionChainId,
-                            canEvolve: false,
-                            skill: skill || ''
-                        }
                         
-                        this.props.addPokemon(pokemon, this.props.teamId);
-                        this.onCloseModal();
+                        // reset pokemon to earliest evolution
+                        if (!currentStage) {
+                            pokeapi.get(`/pokemon/${response.data.chain.species.name}`)
+                                .then((response) => {
+                                    this.setState((prevState) => ({
+                                        data: {
+                                            ...prevState.data,
+                                            sprites: response.data.sprites,
+                                            name: response.data.name
+                                        }
+                                    }));
+                                    
+                                    const pokemon = {
+                                        name: this.state.data.name,
+                                        currentStage: 1,
+                                        stages: this.state.stages + 6, // 1 (egg) + 5 (stars)
+                                        sprite: this.state.data.sprites.front_default,
+                                        percentage: 0,
+                                        percentageValue: null,
+                                        id: this.props.pokemon.id,
+                                        evolutionChainId: this.state.evolutionChainId,
+                                        canEvolve: false,
+                                        skill: skill || ''
+                                    }
+
+                                    this.props.addPokemon(pokemon, this.props.teamId);
+                                    this.onCloseModal();
+                                });
+
+                        // used to evolve pokemon past stage 1
+                        } else {
+                            const pokemon = {
+                                name: response.data.chain.species.name,
+                                currentStage: (currentStage + 1),
+                                stages: this.state.stages + 6, // 1 (egg) + 5 (stars)
+                                sprite: data.sprites.front_default,
+                                percentage: 0,
+                                percentageValue: null,
+                                id: this.props.pokemon.id,
+                                evolutionChainId: this.state.evolutionChainId,
+                                canEvolve: false,
+                                skill: skill || ''
+                            }
+                            
+                            this.props.addPokemon(pokemon, this.props.teamId);
+                            this.onCloseModal();
+                        }         
                     });
             }).catch((error) => {
                 this.setState({
@@ -315,7 +324,6 @@ class PokemonCard extends Component {
                                 </div>
                             )     
                 }
-                {/* <h2>can Evolve? {canEvolve === true ? 'true' : 'false'}</h2> */}
                 <div className="pokemonCard__stars">
                     <FaStar />
                     <FaStar />

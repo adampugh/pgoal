@@ -38,7 +38,7 @@ const initialState = {
                     { text: '', complete: true},
                 ],
                 canEvolve: false,
-                stages: 9,
+                stages: 8,
                 currentStage: 2,
                 evolutionChainId: 67,
             }, 
