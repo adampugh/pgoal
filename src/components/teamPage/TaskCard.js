@@ -13,7 +13,7 @@ class TaskCard extends Component {
     }
 
     render() {
-        const { tasks, id, skill } = this.props.pokemon;
+        const { tasks, id, skill, name } = this.props.pokemon;
         const { teamId, updateSkillName } = this.props;
 
         return (
@@ -29,6 +29,7 @@ class TaskCard extends Component {
                     {
                         tasks.map((task, i) => (
                             <Task 
+                                name={name}
                                 key={i}
                                 task={task} 
                                 index={i}
@@ -38,6 +39,7 @@ class TaskCard extends Component {
                             />
                         ))
                     }
+                    
                 </div>
             </div>
         )

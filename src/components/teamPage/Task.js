@@ -11,19 +11,32 @@ class Task extends Component {
 
 
     render() {
-        const { task, index, pokemonId, teamId, updateTaskText } = this.props;
+        const { task, index, pokemonId, teamId, updateTaskText, name } = this.props;
 
         return (
             <div className="taskCard__tasks__task">
-                <input 
-                    value={task.text}
-                    onChange={(e) => updateTaskText(pokemonId, teamId, e.target.value, index)}
-                />
-                <input 
-                    type="checkbox" 
-                    checked={task.complete}
-                    onChange={() => this.handleTaskToggle()} />
-                <span className="checkmark"></span>
+                { 
+                    name
+                        ? (
+                            <>
+                            <input 
+                                value={task.text}
+                                onChange={(e) => updateTaskText(pokemonId, teamId, e.target.value, index)}
+                            />
+                            <input 
+                                type="checkbox" 
+                                checked={task.complete}
+                                onChange={() => this.handleTaskToggle()} />
+                            <span className="checkmark"></span>
+                            </>
+                        ) : (
+                            <div>
+                                <input value="" disabled />
+                            </div>
+                        )
+                
+                }
+                
             </div>
         )
     }
