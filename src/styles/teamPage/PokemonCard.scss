@@ -58,5 +58,10 @@
         display: flex;
         text-align: center;
         color: white;
+        justify-content: center;
+        padding-bottom: 1px;
+        i, svg {
+            margin: 0 1px;
+        }
     }
 }
