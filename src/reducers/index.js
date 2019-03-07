@@ -54,6 +54,10 @@ const initialState = {
 export default function reducer(state = initialState, action) {
     switch (action.type) {
     // cases
+        case 'LOGIN':
+            return {}
+        case 'LOGOUT':
+            return {}
         case 'CREATE_TEAM':
             return {
                 teams: [...state.teams, { 
@@ -208,6 +212,19 @@ export default function reducer(state = initialState, action) {
                         }
                     })
                 }
+            case 'UPDATE_TEAM_NAME':
+            return {
+                teams: state.teams.map(team => {
+                    if (team.id !== action.teamId) {
+                        return {...team}
+                    } else {
+                        return {
+                            ...team,
+                            name: action.name
+                        }   
+                    }
+                })
+            }
         default:
             return state
     }

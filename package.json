@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "firebase": "^5.8.5",
+    "history": "^4.7.2",
     "node-sass": "^4.11.0",
     "normalize.css": "^8.0.1",
     "pokemon-random-name": "^1.0.4",

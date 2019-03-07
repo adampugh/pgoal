@@ -27,8 +27,13 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     height: 96px;
+    img {
+        max-width: 100%;
+        align-self: center;
+    }
 }
 
 .teamCard__plus {
     align-self: center;
 }
+

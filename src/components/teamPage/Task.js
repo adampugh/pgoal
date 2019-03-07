@@ -34,7 +34,6 @@ class Task extends Component {
                                 <input value="" disabled />
                             </div>
                         )
-                
                 }
                 
             </div>

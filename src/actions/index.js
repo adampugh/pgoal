@@ -1,3 +1,5 @@
+import { firebase, googleAuthProvider } from '../firebase/firebase';
+
 
 // redux thunk
 export const createTeam = () => async dispatch  => {
@@ -22,8 +24,6 @@ export const deletePokemon = (pokemonId, teamId) => dispatch => {
     dispatch({ type: 'DELETE_POKEMON', pokemonId, teamId});
 }
 
-// evolve pokemon
-
 
 // update skill name
 export const updateSkillName = (pokemonId, teamId, skillName) => dispatch => {
@@ -42,4 +42,24 @@ export const completeTask = (pokemonId, teamId, checked, index) => dispatch => {
 
 export const canEvolve = (pokemonId, teamId, canEvolve) => dispatch => {
     dispatch({ type: 'CAN_EVOLVE', pokemonId, teamId, canEvolve });
+}
+
+export const updateTeamName = (teamId, name) => dispatch => {
+    dispatch({ type: 'UPDATE_TEAM_NAME', teamId, name })
+}
+
+
+
+
+
+export const startLogin = () => {
+    return () => {
+        return firebase.auth().signInWithPopup(googleAuthProvider);
+    };
+};
+
+export const startLogout = () => {
+    return () => {
+        return firebase.auth().signOut();
+    }
 }

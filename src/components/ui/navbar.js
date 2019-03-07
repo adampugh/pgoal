@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { startLogin, startLogout } from '../../actions';
 
 import Logo from '../../assets/images/logo.png'
 
@@ -13,11 +15,19 @@ class Navbar extends Component {
                     </div>
                 </Link>
                 <div className="navbar__buttons">
-                    <button className="btn">Login</button>
+                    <button 
+                        onClick={this.props.startLogin}
+                        className="btn"
+                        >Login</button>
+                    <button 
+                        onClick={this.props.startLogout}
+                        className="btn">
+                        Logout
+                    </button>
                 </div>
             </nav>
         )
     }
 }
 
-export default Navbar;
+export default connect(null, { startLogin, startLogout })(Navbar);

@@ -11,7 +11,7 @@ class TeamPage extends Component {
     render() {
 
         if (!this.props.team) {
-            return <Redirect to="/" />
+            return <Redirect to="/dashboard" />
         }
 
         return (

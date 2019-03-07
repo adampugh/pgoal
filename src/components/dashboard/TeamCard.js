@@ -3,6 +3,8 @@ import { FaPlusSquare, FaTrashAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
 
+import Egg from '../../assets/images/egg.png';
+
 class TeamCard extends Component {
     state = {
         open: false
@@ -39,7 +41,9 @@ class TeamCard extends Component {
                     <div className="teamCard__pokemon">
                     {
                         pokemon.map((pokemon, i) => pokemon.sprite 
-                            ? <img src={pokemon.sprite} key={i} alt="sprite"/> 
+                            ? pokemon.currentStage === 1 
+                                ? <img src={Egg} alt="egg" key={i} className="teamCard__pokemon__egg" /> 
+                                : <img src={pokemon.sprite} key={i} alt="sprite"/> 
                             : <div className="teamCard__plus" key={i}><FaPlusSquare /></div>
                         )
                     }
