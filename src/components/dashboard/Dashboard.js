@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { createTeam, deleteTeam } from '../../actions';
+import { startCreateTeam, startDeleteTeam } from '../../actions';
 
 import Navbar from '../ui/navbar';
 import TeamCard from './TeamCard';
@@ -9,12 +9,12 @@ import TeamCard from './TeamCard';
 
 class Dashboard extends Component {
 
-    handleCreateTeam = () => {
-        this.props.createTeam();
+    handleStartCreateTeam = () => {
+        this.props.startCreateTeam();
     }
 
     handleDeleteTeam = (id) => {
-        this.props.deleteTeam(id);
+        this.props.startDeleteTeam(id);
     }
     
     render() {
@@ -33,7 +33,7 @@ class Dashboard extends Component {
                 )
             }
             <div className="teamCard teamCard--create">
-                <button onClick={this.handleCreateTeam}>Create new team</button>
+                <button onClick={this.handleStartCreateTeam}>Create new team</button>
             </div>
             </>
         )
@@ -45,4 +45,4 @@ const mapToStateToProps = (state) => ({
 });
 
 
-export default connect(mapToStateToProps, { createTeam, deleteTeam })(Dashboard);
+export default connect(mapToStateToProps, { startCreateTeam, startDeleteTeam })(Dashboard);

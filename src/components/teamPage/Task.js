@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { updateTaskText, completeTask } from '../../actions';
+import { startUpdateTaskText, startCompleteTask } from '../../actions';
 
 class Task extends Component {
     handleTaskToggle = async () => {
-        const { completeTask, checkCanPokemonEvolve, pokemonId, teamId, task, index } = this.props;
-        await completeTask(pokemonId, teamId, !task.complete, index);
+        const { startCompleteTask, checkCanPokemonEvolve, pokemonId, teamId, task, index, pokemonIndex } = this.props;
+        await startCompleteTask(pokemonId, teamId, !task.complete, index, pokemonIndex);
         checkCanPokemonEvolve();
     }
 
 
     render() {
-        const { task, index, pokemonId, teamId, updateTaskText, name } = this.props;
+        const { task, index, pokemonId, teamId, startUpdateTaskText, name, pokemonIndex } = this.props;
 
         return (
             <div className="taskCard__tasks__task">
@@ -21,7 +21,7 @@ class Task extends Component {
                             <>
                             <input 
                                 value={task.text}
-                                onChange={(e) => updateTaskText(pokemonId, teamId, e.target.value, index)}
+                                onChange={(e) => startUpdateTaskText(pokemonId, teamId, e.target.value, index, pokemonIndex)}
                             />
                             <input 
                                 type="checkbox" 
@@ -41,4 +41,4 @@ class Task extends Component {
     }
 }
 
-export default connect(null, { updateTaskText, completeTask })(Task);
+export default connect(null, { startUpdateTaskText, startCompleteTask })(Task);

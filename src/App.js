@@ -10,7 +10,7 @@ import Dashboard from './components/dashboard/Dashboard';
 import TeamPage from './components/teamPage/TeamPage';
 import HomePage from './components/homePage/HomePage';
 
-const store=createStore(reducers, applyMiddleware(thunk));
+export const store = createStore(reducers, applyMiddleware(thunk));
 export const history = createHistory();
 
 class App extends Component {
@@ -19,8 +19,8 @@ class App extends Component {
             <Provider store={store} >
                 <Router history={history}>
                     <div>
-                        <Route exact path="/" component={HomePage} />
-                        <Route exact path="/dashboard" component={Dashboard} />
+                        {/* <Route exact path="/" component={HomePage} /> */}
+                        <Route exact path="/" component={Dashboard} />
                         <Route exact path="/team/:id" component={TeamPage} />
                     </div>
                 </Router>

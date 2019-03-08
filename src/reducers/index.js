@@ -1,18 +1,7 @@
 import uuid from 'uuid/v1';
-import pokemonRandomName from 'pokemon-random-name';
 
-const initialTask = {
-    text: '',
-    complete: false
-}
+import { setupTasks } from '../utils/helpers';
 
-const setupTasks = () => {
-    let tasks = [];
-    for ( let i = 0; i < 10; i++) {
-        tasks.push(initialTask);
-    }
-    return tasks;
-}
 
 
 const initialState = {
@@ -58,20 +47,13 @@ export default function reducer(state = initialState, action) {
             return {}
         case 'LOGOUT':
             return {}
+        case 'FETCH_TEAMS':
+            return {
+                teams: action.teams
+            }
         case 'CREATE_TEAM':
             return {
-                teams: [...state.teams, { 
-                    id: uuid(),
-                    name: `Team ${pokemonRandomName()}`,
-                    pokemon: [
-                        { id: uuid(), name: '', sprite: '', skill: '', tasks: setupTasks()},
-                        { id: uuid(), name: '', sprite: '', skill: '', tasks: setupTasks()},
-                        { id: uuid(), name: '', sprite: '', skill: '', tasks: setupTasks()},
-                        { id: uuid(), name: '', sprite: '', skill: '', tasks: setupTasks()},
-                        { id: uuid(), name: '', sprite: '', skill: '', tasks: setupTasks()},
-                        { id: uuid(), name: '', sprite: '', skill: '', tasks: setupTasks()}
-                    ]
-                }]
+                teams: [...state.teams, action.team]
             };
         case 'DELETE_TEAM':
             return {
@@ -108,7 +90,7 @@ export default function reducer(state = initialState, action) {
                                 if (pokemon.id !== action.pokemonId) {
                                     return {...pokemon}
                                 } else {
-                                    return { id: action.pokemonId, name: '', sprite: '', skill: 'Skill', tasks: setupTasks()}
+                                    return { ...action.emptyPokemon }
                                 }
                             })
                         }   

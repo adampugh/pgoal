@@ -1,11 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App, { history } from './App';
+import App, { history, store } from './App';
 import 'normalize.css';
 import './styles/styles.scss';
 import { firebase } from './firebase/firebase';
+import { startFetchTeams } from './actions';
 
-ReactDOM.render(<App />, document.querySelector('#root'));
+
+
+
+ReactDOM.render(<p>Loading...</p>, document.querySelector('#root'));
+
+store.dispatch(startFetchTeams()).then(() => {
+    ReactDOM.render(<App />, document.querySelector('#root'));
+});
+
+
+
+
+
+
+
 
 
 firebase.auth().onAuthStateChanged((user) => {
@@ -13,6 +28,6 @@ firebase.auth().onAuthStateChanged((user) => {
         // if someone logs in then fetch data here
         
     } else {
-        history.push('/');
+        // history.push('/');
     }
 })

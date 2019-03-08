@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { updateTeamName } from '../../actions';
+import { startUpdateTeamName } from '../../actions';
 
 import Card from './Card';
 
@@ -15,7 +15,7 @@ class PokemonPark extends Component {
     render() {
         const teamId = this.props.team.id;
         const { name } = this.props.team;
-        const { updateTeamName } = this.props;
+        const { startUpdateTeamName } = this.props;
 
         return (
             <>
@@ -23,12 +23,12 @@ class PokemonPark extends Component {
                     <h1>
                         <input 
                             value={name}
-                            onChange={(e) => updateTeamName(teamId, e.target.value)}
+                            onChange={(e) => startUpdateTeamName(teamId, e.target.value)}
                         />
                     </h1>
                     <div className="pokemonPark__bg">
                         <div className="pokemonPark__card">
-                            {this.props.team.pokemon.map((pokemon, i) => <Card pokemon={pokemon} key={i} teamId={teamId} />)} 
+                            {this.props.team.pokemon.map((pokemon, i) => <Card pokemon={pokemon} key={i} teamId={teamId} index={i} />)} 
                         </div>
                     </div>
                 </div>
@@ -37,4 +37,4 @@ class PokemonPark extends Component {
     }
 }
 
-export default connect(null, { updateTeamName })(PokemonPark);
+export default connect(null, { startUpdateTeamName })(PokemonPark);

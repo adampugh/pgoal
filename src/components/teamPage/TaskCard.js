@@ -1,26 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { updateSkillName, canEvolve } from '../../actions';
+import { startUpdateSkillName, startCanEvolve } from '../../actions';
 
 import Task from './Task';
 
 class TaskCard extends Component {
 
     checkCanPokemonEvolve = () => {
-        const { pokemon, teamId, canEvolve} = this.props;
+        const { pokemon, teamId, startCanEvolve, index} = this.props;
         let canPokemonEvolve = pokemon.tasks.every(task => task.complete === true);
-        canEvolve(pokemon.id, teamId, canPokemonEvolve)
+        startCanEvolve(pokemon.id, teamId, canPokemonEvolve, index)
     }
 
     render() {
         const { tasks, id, skill, name } = this.props.pokemon;
-        const { teamId, updateSkillName } = this.props;
+        const { teamId, startUpdateSkillName, index } = this.props;
 
         return (
             <div>
                 <div className="taskCard__title">
                     <input 
-                        onChange={(e) => updateSkillName(id, teamId, e.target.value)}
+                        onChange={(e) => startUpdateSkillName(id, teamId, e.target.value, index)}
                         value={skill || ''}
                         placeholder="Skill"
                         />
@@ -36,6 +36,7 @@ class TaskCard extends Component {
                                 teamId={teamId} 
                                 pokemonId={id}
                                 checkCanPokemonEvolve={this.checkCanPokemonEvolve}
+                                pokemonIndex={index}
                             />
                         ))
                     }
@@ -47,4 +48,4 @@ class TaskCard extends Component {
 }
 
 
-export default connect(null, { updateSkillName, canEvolve })(TaskCard);
+export default connect(null, { startUpdateSkillName, startCanEvolve })(TaskCard);

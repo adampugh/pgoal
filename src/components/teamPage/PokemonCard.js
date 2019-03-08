@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import pokeapi from '../../apis/pokeapi';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { addPokemon, deletePokemon } from '../../actions';
+import { startAddPokemon, startDeletePokemon } from '../../actions';
 import Modal from 'react-responsive-modal';
 import { FaTrashAlt, FaPlusSquare, FaSearch, FaAngleDoubleUp, FaStar } from 'react-icons/fa';
 
@@ -110,6 +110,7 @@ class PokemonCard extends Component {
         const { data, stars, shinyEvolution } = this.state;
         const { skill, currentStage } = this.props.pokemon;
 
+        console.log('this is index', this.props.index);
         pokeapi.get(`/pokemon-species/${data.name}`)
             .then((response) => {
                 axios.get(response.data.evolution_chain.url)
@@ -143,7 +144,7 @@ class PokemonCard extends Component {
                                         stars: 0
                                     }
 
-                                    this.props.addPokemon(pokemon, this.props.teamId);
+                                    this.props.startAddPokemon(pokemon, this.props.teamId, this.props.index);
                                     this.onCloseModal();
                                 });
 
@@ -166,7 +167,7 @@ class PokemonCard extends Component {
                             
                             console.log(pokemon);
 
-                            this.props.addPokemon(pokemon, this.props.teamId);
+                            this.props.startAddPokemon(pokemon, this.props.teamId, this.props.index);
                             this.onCloseModal();
                         }         
                     });
@@ -178,7 +179,7 @@ class PokemonCard extends Component {
     }
 
     deletePokemon = () => {
-        this.props.deletePokemon(this.props.pokemon.id, this.props.teamId);
+        this.props.startDeletePokemon(this.props.pokemon.id, this.props.teamId, this.props.index);
         this.setState({ 
             stars: 0
         })
@@ -381,4 +382,4 @@ class PokemonCard extends Component {
     }
 }
 
-export default connect(null, { addPokemon, deletePokemon })(PokemonCard);
+export default connect(null, { startAddPokemon, startDeletePokemon })(PokemonCard);
