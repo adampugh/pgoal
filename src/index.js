@@ -4,30 +4,33 @@ import App, { history, store } from './App';
 import 'normalize.css';
 import './styles/styles.scss';
 import { firebase } from './firebase/firebase';
-import { startFetchTeams } from './actions';
+import { startFetchTeams, login, logout } from './actions';
 
 
-
+let hasRendered = false;
+const renderApp = () => {
+    if (!hasRendered) {
+        ReactDOM.render(<App />, document.querySelector('#root'));
+        hasRendered = true;
+    }
+};
 
 ReactDOM.render(<p>Loading...</p>, document.querySelector('#root'));
 
-store.dispatch(startFetchTeams()).then(() => {
-    ReactDOM.render(<App />, document.querySelector('#root'));
-});
-
-
-
-
-
-
-
-
-
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-        // if someone logs in then fetch data here
-        
+        console.log(user.uid);
+        store.dispatch(login(user.uid));
+        store.dispatch(startFetchTeams()).then(() => {
+            renderApp();
+            if (history.location.pathname === '/') {
+                history.push('/dash')
+            }
+        });
     } else {
-        // history.push('/');
+        store.dispatch(logout());
+        history.push('/');
+        renderApp();
+        
     }
 })

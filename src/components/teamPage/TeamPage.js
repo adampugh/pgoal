@@ -10,8 +10,8 @@ class TeamPage extends Component {
 
     render() {
 
-        if (!this.props.team) {
-            return <Redirect to="/dashboard" />
+        if (!this.props.uid || !this.props.team) {
+            return <Redirect to="/" />
         }
 
         return (
@@ -24,7 +24,8 @@ class TeamPage extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-    team: ownProps.location.state ? state.teams.filter(team => ownProps.location.state.team.id === team.id)[0] : null
+    team: ownProps.location.state ? state.teams.filter(team => ownProps.location.state.team.id === team.id)[0] : null,
+    uid: !!state.uid
 });
 
 export default connect(mapStateToProps)(TeamPage);

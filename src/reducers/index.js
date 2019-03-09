@@ -3,61 +3,30 @@ import uuid from 'uuid/v1';
 import { setupTasks } from '../utils/helpers';
 
 
-
-const initialState = {
-    teams: [
-        {
-            id: '1266634',
-            name: 'development',
-            pokemon: [{
-                id: '1234',
-                name: 'eevee',
-                skill: 'skill',
-                sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/133.png",
-                tasks: [
-                    { text: '', complete: false},
-                    { text: '', complete: true},
-                    { text: '', complete: true},
-                    { text: '', complete: true},
-                    { text: '', complete: true},
-                    { text: '', complete: true},
-                    { text: '', complete: true},
-                    { text: '', complete: true},
-                    { text: '', complete: true},
-                    { text: '', complete: true},
-                ],
-                canEvolve: false,
-                stages: 8,
-                currentStage: 2,
-                evolutionChainId: 67,
-            }, 
-            { id: uuid(), name: '', sprite: '', skill: 'Skill', tasks: setupTasks()},
-            { id: uuid(), name: '', sprite: '', skill: 'Skill', tasks: setupTasks()},
-            { id: uuid(), name: '', sprite: '', skill: 'Skill', tasks: setupTasks()},
-            { id: uuid(), name: '', sprite: '', skill: 'Skill', tasks: setupTasks()},
-            { id: uuid(), name: '', sprite: '', skill: 'Skill', tasks: setupTasks()}]
-        }
-    ]
-}
-
-export default function reducer(state = initialState, action) {
+export default function reducer(state = {}, action) {
     switch (action.type) {
     // cases
         case 'LOGIN':
-            return {}
+            return {
+                uid: action.uid,
+                ...state
+            }
         case 'LOGOUT':
-            return {}
+            return {};
         case 'FETCH_TEAMS':
             return {
-                teams: action.teams
+                teams: action.teams,
+                ...state
             }
         case 'CREATE_TEAM':
             return {
-                teams: [...state.teams, action.team]
+                teams: [...state.teams, action.team],
+                ...state
             };
         case 'DELETE_TEAM':
             return {
-                teams: state.teams.filter(team => team.id !== action.id)
+                teams: state.teams.filter(team => team.id !== action.id),
+                ...state
             }
         case 'ADD_POKEMON':
             return {
@@ -76,7 +45,8 @@ export default function reducer(state = initialState, action) {
                             })
                         }   
                     }
-                })
+                }),
+                ...state
             }
         case 'DELETE_POKEMON':
             return {
@@ -95,7 +65,8 @@ export default function reducer(state = initialState, action) {
                             })
                         }   
                     }
-                })
+                }),
+                ...state
             }
         case 'UPDATE_SKILL_NAME':
             return {
@@ -114,7 +85,8 @@ export default function reducer(state = initialState, action) {
                             })
                         }   
                     }
-                })
+                }),
+                ...state
             }
         case 'UPDATE_TASK_TEXT':
             return {
@@ -142,7 +114,8 @@ export default function reducer(state = initialState, action) {
                             })
                         }   
                     }
-                })
+                }),
+                ...state
             }
         case 'COMPLETE_TASK':
             return {
@@ -170,7 +143,8 @@ export default function reducer(state = initialState, action) {
                             })
                         }   
                     }
-                })
+                }),
+                ...state
             }
             case 'CAN_EVOLVE':
                 return {
@@ -192,7 +166,8 @@ export default function reducer(state = initialState, action) {
                                 })
                             }   
                         }
-                    })
+                    }),
+                    ...state
                 }
             case 'UPDATE_TEAM_NAME':
             return {
@@ -205,9 +180,10 @@ export default function reducer(state = initialState, action) {
                             name: action.name
                         }   
                     }
-                })
+                }),
+                ...state
             }
         default:
-            return state
+            return state;
     }
 }
