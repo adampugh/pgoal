@@ -2,6 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { Route, Redirect } from "react-router-dom";
 
+// fix redirects and private + public routes
+
 export const PrivateRoute = ({ 
     isAuthenticated, 
     component: Component,
