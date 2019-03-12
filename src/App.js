@@ -21,9 +21,9 @@ class App extends Component {
             <Provider store={store} >
                 <Router history={history}>
                     <div>
-                        <Route exact path="/" component={HomePage} />
-                        <Route exact path="/dash" component={Dashboard} />
-                        <Route exact path="/team/:id" component={TeamPage} />
+                        <PublicRoute exact path="/" component={HomePage} />
+                        <PrivateRoute exact path="/dash" component={Dashboard} />
+                        <PrivateRoute exact path="/team/:id" component={TeamPage} />
                     </div>
                 </Router>
             </Provider>

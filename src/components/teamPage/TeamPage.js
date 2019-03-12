@@ -8,11 +8,15 @@ import PokemonPark from './PokemonPark';
 
 class TeamPage extends Component {
 
+    componentDidMount() {
+        console.log('props', this.props);
+    }
+
     render() {
 
-        if (!this.props.uid || !this.props.team) {
-            return <Redirect to="/" />
-        }
+        // if (this.props.uid === false) {
+        //     return <Redirect to="/" />
+        // }
 
         return (
             <>
@@ -24,8 +28,8 @@ class TeamPage extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
+    // uid: !!state.uid,
     team: ownProps.location.state ? state.teams.filter(team => ownProps.location.state.team.id === team.id)[0] : null,
-    uid: !!state.uid
 });
 
 export default connect(mapStateToProps)(TeamPage);

@@ -17,9 +17,9 @@ class Dashboard extends Component {
     }
     
     render() {
-        if (this.props.uid === false) {
-            return <Redirect to="/" />
-        }
+        // if (this.props.uid === false) {
+        //     return <Redirect to="/" />
+        // }
 
 
         return (
@@ -46,10 +46,9 @@ class Dashboard extends Component {
 
 
 const mapToStateToProps = (state) => {
-    console.log(state);
     return {
         teams: state.teams,
-        uid: !!state.uid
+        // uid: !!state.uid
     }
 }
 

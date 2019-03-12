@@ -16,17 +16,17 @@ export default function reducer(state = {}, action) {
         case 'FETCH_TEAMS':
             return {
                 teams: action.teams,
-                ...state
+                // ...state
             }
         case 'CREATE_TEAM':
             return {
                 teams: [...state.teams, action.team],
-                ...state
+                // ...state
             };
         case 'DELETE_TEAM':
             return {
                 teams: state.teams.filter(team => team.id !== action.id),
-                ...state
+                // ...state
             }
         case 'ADD_POKEMON':
             return {
@@ -46,7 +46,7 @@ export default function reducer(state = {}, action) {
                         }   
                     }
                 }),
-                ...state
+                // ...state
             }
         case 'DELETE_POKEMON':
             return {
@@ -66,7 +66,7 @@ export default function reducer(state = {}, action) {
                         }   
                     }
                 }),
-                ...state
+                // ...state
             }
         case 'UPDATE_SKILL_NAME':
             return {
@@ -86,7 +86,7 @@ export default function reducer(state = {}, action) {
                         }   
                     }
                 }),
-                ...state
+                // ...state
             }
         case 'UPDATE_TASK_TEXT':
             return {
@@ -115,7 +115,7 @@ export default function reducer(state = {}, action) {
                         }   
                     }
                 }),
-                ...state
+                // ...state
             }
         case 'COMPLETE_TASK':
             return {
@@ -144,7 +144,7 @@ export default function reducer(state = {}, action) {
                         }   
                     }
                 }),
-                ...state
+                // ...state
             }
             case 'CAN_EVOLVE':
                 return {
@@ -167,7 +167,7 @@ export default function reducer(state = {}, action) {
                             }   
                         }
                     }),
-                    ...state
+                    // ...state
                 }
             case 'UPDATE_TEAM_NAME':
             return {
@@ -181,7 +181,7 @@ export default function reducer(state = {}, action) {
                         }   
                     }
                 }),
-                ...state
+                // ...state
             }
         default:
             return state;
