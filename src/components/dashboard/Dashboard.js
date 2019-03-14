@@ -47,7 +47,7 @@ class Dashboard extends Component {
 
 const mapToStateToProps = (state) => {
     return {
-        teams: state.teams,
+        teams: state.team.teams,
         // uid: !!state.uid
     }
 }

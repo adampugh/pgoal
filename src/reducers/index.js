@@ -6,13 +6,13 @@ import { setupTasks } from '../utils/helpers';
 export default function reducer(state = {}, action) {
     switch (action.type) {
     // cases
-        case 'LOGIN':
-            return {
-                uid: action.uid,
-                ...state
-            }
-        case 'LOGOUT':
-            return {};
+        // case 'LOGIN':
+        //     return {
+        //         uid: action.uid,
+        //         ...state
+        //     }
+        // case 'LOGOUT':
+        //     return {};
         case 'FETCH_TEAMS':
             return {
                 teams: action.teams,

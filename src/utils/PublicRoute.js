@@ -18,7 +18,7 @@ export const PublicRoute = ({
 
 const mapStateToProps = state => {
     return {
-        isAuthenticated: !!state.uid
+        isAuthenticated: !!state.auth.uid
     }
 }
 

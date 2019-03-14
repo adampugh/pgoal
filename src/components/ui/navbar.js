@@ -7,9 +7,11 @@ import Logo from '../../assets/images/logo.png'
 
 class Navbar extends Component {
     render() {
+        const { uid } = this.props;
+
         return (
             <nav className="container">
-                <Link to="/">
+                <Link to={ uid ? "/dash" : "/" }>
                     <div className="logo">
                         <img src={Logo} alt="logo" />
                     </div>
@@ -30,4 +32,8 @@ class Navbar extends Component {
     }
 }
 
-export default connect(null, { startLogin, startLogout })(Navbar);
+const mapToStateToProps = (state) => ({
+    uid: !!state.auth.uid
+})
+
+export default connect(mapToStateToProps, { startLogin, startLogout })(Navbar);
