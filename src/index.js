@@ -2,9 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App, { history, store } from './App';
 import 'normalize.css';
+import "animate.css/animate.min.css";
 import './styles/styles.scss';
 import { firebase } from './firebase/firebase';
 import { startFetchTeams, login, logout } from './actions';
+
+import Loading from './components/ui/loading';
 
 
 let hasRendered = false;
@@ -15,11 +18,10 @@ const renderApp = () => {
     }
 };
 
-ReactDOM.render(<p>Loading...</p>, document.querySelector('#root'));
+ReactDOM.render(<Loading />, document.querySelector('#root'));
 
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-        console.log(user.uid);
         store.dispatch(login(user.uid));
         store.dispatch(startFetchTeams()).then(() => {
             renderApp();
@@ -31,6 +33,5 @@ firebase.auth().onAuthStateChanged((user) => {
         store.dispatch(logout());
         history.push('/');
         renderApp();
-        
     }
 })

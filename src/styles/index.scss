@@ -1,7 +1,8 @@
 body, html {
     margin: 0;
     padding: 0;
-    font-family: 'Lato', sans-serif;
+    // font-family: 'Lato', sans-serif;
+    font-family: 'Nunito', sans-serif;
     box-sizing: border-box;
     color: grey;
 }
@@ -17,14 +18,29 @@ $tablet-breakpoint: 40rem;
     text-align: center;
     font-size: 40px;
     color: #666666;
+    // font-family: 'Raleway', sans-serif;
+    // font-family: 'Open Sans', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+    // font-family: 'Playfair Display', serif;
+    // font-family: 'Nunito', sans-serif;
 }
 
-.text {
+p {
     color: grey;
+    // font-family: 'Raleway', sans-serif;
+    line-height: 25px;
+    // font-family: 'Open Sans', sans-serif;
+    // font-family: 'Montserrat', sans-serif;
+    // font-family: 'Playfair Display', serif;
+    font-family: 'Nunito', sans-serif;
 }
 
 .page {
     min-height: 100vh;
+}
+
+.content {
+    min-height: calc(100vh - 270.46px);
 }
 
 a {
@@ -45,7 +61,7 @@ a {
 .btn {
     padding: 0;
     background: white;
-    border: 2px solid $off-grey;
+    border: 2px solid lightgrey;
     border-radius: 15px;
     padding: 10px 15px;
     transition: 0.3s;

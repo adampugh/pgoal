@@ -13,12 +13,16 @@ class Navbar extends Component {
         return (
             <nav>
                 <div className="container navbar">
+                
                 <Link to={ uid ? "/dash" : "/" }>
                     <div className="logo">
                         <img src={Logo} alt="logo" />
                     </div>
                 </Link>
                 <div className="navbar__buttons">
+                    <Link to="/faq" className="navbar__buttons__faq">
+                        FAQ
+                    </Link>
                     {
                         uid ? (
                             <button 

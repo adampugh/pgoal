@@ -1,0 +1,33 @@
+.faq__bg {
+    background: url('../assets/images/homepagebg.png') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    padding-top: 40px;
+    -webkit-box-shadow: inset 0px 0px 47px -6px rgba(0,0,0,0.75);
+    -moz-box-shadow: inset 0px 0px 47px -6px rgba(0,0,0,0.75);
+    box-shadow: inset 0px 0px 47px -6px rgba(0,0,0,0.75);
+    
+}
+
+.faq__block {
+    text-align: center;
+    z-index: 20;
+    position: relative;
+    background: white;
+    border-radius: 15px;
+    padding: 140px;
+    border: 3px solid lightgrey;
+    @include boxshadow;
+    p {
+        padding: 40px;
+    }
+}
+
+
+
+.homePage__second--faq {
+    margin-top: 80px;
+    top: 0;
+}

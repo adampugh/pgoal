@@ -110,7 +110,6 @@ class PokemonCard extends Component {
         const { data, stars, shinyEvolution } = this.state;
         const { skill, currentStage } = this.props.pokemon;
 
-        console.log('this is index', this.props.index);
         pokeapi.get(`/pokemon-species/${data.name}`)
             .then((response) => {
                 axios.get(response.data.evolution_chain.url)
@@ -164,8 +163,6 @@ class PokemonCard extends Component {
                                 skill: skill || '',
                                 stars: stars || 0,
                             }
-                            
-                            console.log(pokemon);
 
                             this.props.startAddPokemon(pokemon, this.props.teamId, this.props.index);
                             this.onCloseModal();
@@ -209,7 +206,7 @@ class PokemonCard extends Component {
                 if (this.state.evolutionsArr.length > 0) {
                     this.state.evolutionsArr.map(pokemon => {
                         const { name } = pokemon.species;
-                        pokeapi.get(`/pokemon/${name}`)
+                        return pokeapi.get(`/pokemon/${name}`)
                             .then((response) => {
                                 this.setState({
                                     evolutionsArr: this.state.evolutionsArr.map(pokemon => {
@@ -225,7 +222,7 @@ class PokemonCard extends Component {
                             })
                     });
                 } else {
-                    console.log('final evolution');
+                    // final evolution
                     if (stars === 5) {
                         // get shiny sprite
                         // could also check for megas in the future => search 'pokemon/gengar-mega'

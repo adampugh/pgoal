@@ -16,11 +16,13 @@ class TeamPage extends Component {
         }
 
         return (
-            <div className="page">
+            <>
                 <Navbar />
-                <PokemonPark team={this.props.team}/>
+                <div className="content">
+                    <PokemonPark team={this.props.team}/>
+                </div>
                 <Footer />
-            </div>
+            </>
         );
     }
 }

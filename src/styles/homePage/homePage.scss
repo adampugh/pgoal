@@ -4,7 +4,9 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    
+    -webkit-box-shadow: inset 0px 0px 47px -6px rgba(0,0,0,0.75);
+    -moz-box-shadow: inset 0px 0px 47px -6px rgba(0,0,0,0.75);
+    box-shadow: inset 0px 0px 47px -6px rgba(0,0,0,0.75);
 }
 
 .homePage__hero__container {
@@ -19,7 +21,7 @@
     background: white;
     border-radius: 15px;
     padding: 40px;
-    border: 3px solid $off-grey;
+    border: 3px solid lightgrey;
     @include boxshadow;
 }
 
@@ -73,16 +75,20 @@
 
 .homePage__second__bg {
     background-image: linear-gradient(white, lightgrey);
+    // position: absolute;
+    // height: 80%;
+    height: calc(100% - 200px);
 }
 
 .homePage__second {
     z-index: 20;
     position: relative;
     top: -210px;
+    margin-bottom: -100px;
     background: white;
     border-radius: 15px;
     padding: 40px;
-    border: 3px solid $off-grey;
+    border: 3px solid lightgrey;
     @include boxshadow;
 }
 
@@ -127,6 +133,35 @@
     width: 120%;
 }
 
+.homePage__bottom__bg {
+    background: url('../assets/images/homepagebg.png') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 510px;
+    position: relative; 
+    top: -400px;
+    margin-bottom: -600px;
+    -webkit-box-shadow: inset 0px 0px 47px -6px rgba(0,0,0,0.75);
+    -moz-box-shadow: inset 0px 0px 47px -6px rgba(0,0,0,0.75);
+    box-shadow: inset 0px 0px 47px -6px rgba(0,0,0,0.75);
+    .homePage__bottom__bg__overlay {
+        height: 240px;
+        background: #e0e0e0;
+        z-index: 10;
+        clip-path: polygon(
+            0 0, /* left top */
+            100% 0%, /* right top */ 
+            100% 50%, /* right bottom */
+            0 100% /* left bottom */
+        );
+        position: relative;
+        bottom: 2px;
+    }
+}
+
+
 @media (max-width: $desktop-breakpoint) {
     .homePage__hero__block {
         width: 70%;
@@ -139,8 +174,8 @@
     }
 
     .homePage__hero__block__panels {
-        img {
-            // left: -40px;
+        .homePage__hero__block__panels__img--pikachu {
+            left: -60px;
         }
     }
 
@@ -168,7 +203,5 @@
         }
     }
 
-    .homePage__hero__block__panels__img--pikachu {
-        left: -60px;
-    }
+    
 }

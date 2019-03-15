@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { startLogin } from '../../actions';
+import ScrollAnimation from 'react-animate-on-scroll';
 
 import Navbar from '../ui/navbar';
 import Footer from '../ui/footer';
@@ -19,11 +22,13 @@ class HomePage extends Component {
                 <Navbar />
                 <div className="homePage__hero">
                     <div className="container homePage__hero__container">
+                        {/* <Fade bottom> */}
+                        <ScrollAnimation animateIn="fadeInUp">
                         <div className="homePage__hero__block">
                             <h1 className="heading">Evolve Your Skills!</h1>
                             <div className="homePage__hero__block__panels__text">
-                                <p>Gamify your progress by creating pokemon teams and watch them develop as you do!</p>
-                                <button className="btn">
+                                <p>Gamify your progress by creating pokémon teams and watch them develop as you do!</p>
+                                <button className="btn" onClick={this.props.startLogin}>
                                     Login <img src={Google} alt="google logo" />
                                 </button>
                             </div>
@@ -34,35 +39,48 @@ class HomePage extends Component {
                                 <img src={Squirtle} alt="squirtle" className="homePage__hero__block__panels__img--squirtle"/>
                             </div>
                         </div>
+                        </ScrollAnimation>
+                        {/* </Fade> */}
                     </div>
                     <div className="homePage__hero__overlay"></div>
                 </div>
                 <div className="homePage__second__bg">
-                {/* <div className="container"> */}
-                <div className="homePage__second container--small">
-                    <div className="homePage__second__panels">
-                        <img src={Dragonite} alt="dragonite" className="img__dragonite"/>
-                        <div className="homePage__second__panels__text">
-                            <h1 className="heading">Build Teams</h1>
-                            <p>Create teams of pokemon to show your progress in different skills. Name teams for each of your goals, whether it's learning a new language or a simple to do list PokeSkills has got you covered.</p>
-                            <img src={Team} alt="team" />
+                    <div className="homePage__second container--small">
+                        <div className="homePage__second__panels">
+                            <ScrollAnimation animateIn="fadeInLeft">
+                                <img src={Dragonite} alt="dragonite" className="img__dragonite"/>
+                            </ScrollAnimation>
+                            <div className="homePage__second__panels__text">
+                                <ScrollAnimation animateIn="fadeIn">
+                                    <h1 className="heading">Build Teams</h1>
+                                    <p>Create teams of pokémon to show your progress in different skills. Name teams for each of your goals, whether it's learning a new language or a simple to do list PokéSkills has got you covered.</p>
+                                    <img src={Team} alt="team" />
+                                </ScrollAnimation>
+                            </div>
+                            <div className="homePage__second__panels__text panel">
+                                <ScrollAnimation animateIn="fadeIn">
+                                    <h1 className="heading">Evolve Pokémon</h1>
+                                    <p>Evolve your pokémon as your skills develop, each pokémon has up to 9 stages of development. As your skills grow so do your pokémon!</p>
+                                    <img src={Evolution} alt="evolution" />
+                                </ScrollAnimation>
+                            </div>
+                            <ScrollAnimation animateIn="fadeInRight">
+                                <img src={Marill} alt="marill" className="img__marill" />
+                            </ScrollAnimation>
                         </div>
-                        <div className="homePage__second__panels__text panel">
-                            <h1 className="heading">Evolve Pokemon</h1>
-                            <p>Evolve your pokemon as your skills develop, each pokemon has up to 9 stages of development. As your skills grow so do your pokemon!</p>
-                            <img src={Evolution} alt="evolution" />
-                        </div>
-                        <img src={Marill} alt="marill" className="img__marill" />
+                        <ScrollAnimation animateIn="fadeIn">
+                            <img src={Banner} alt="pokemon banner" className="img__banner" />
+                        </ScrollAnimation>
                     </div>
-                    <img src={Banner} alt="pokemon banner" className="img__banner" />
                 </div>
-                {/* </div> */}
+                <div className="homePage__bottom__bg">
+                    <div className="homePage__bottom__bg__overlay"></div>
+                    
+                </div>
                 <Footer />
-                </div>
-                
             </>
         )
     }
 }
 
-export default HomePage;
+export default connect(null, { startLogin })(HomePage);

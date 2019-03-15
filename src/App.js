@@ -10,9 +10,8 @@ import createHistory from 'history/createBrowserHistory';
 import Dashboard from './components/dashboard/Dashboard';
 import TeamPage from './components/teamPage/TeamPage';
 import HomePage from './components/homePage/HomePage';
+import Faq from './components/faq/Faq';
 import Page404 from './components/404/404';
-import PrivateRoute from './utils/PrivateRoute';
-import PublicRoute from './utils/PublicRoute';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -34,6 +33,7 @@ class App extends Component {
                 <Router history={history}>
                     <div>
                         <Route exact path="/" component={HomePage} />
+                        <Route extact path="/faq" component={Faq} />
                         <Route exact path="/dash" component={Dashboard} />
                         <Route exact path="/team/:id" component={TeamPage} />
                         <Route path="/" component={Page404} />

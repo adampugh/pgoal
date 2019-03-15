@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { startCreateTeam, startDeleteTeam } from '../../actions';
-import { Redirect } from 'react-router-dom';
 import Navbar from '../ui/navbar';
 import Footer from '../ui/footer';
 import TeamCard from './TeamCard';
@@ -24,8 +23,10 @@ class Dashboard extends Component {
 
 
         return (
-            <div className="page">
+            // <div className="page">
+            <>
             <Navbar />
+            <div className="content">
             {
                 this.props.teams.map(team => 
                     (
@@ -40,8 +41,9 @@ class Dashboard extends Component {
             <div className="teamCard teamCard--create">
                 <button onClick={this.handleStartCreateTeam}>Create new team</button>
             </div>
-            <Footer />
             </div>
+            <Footer />
+            </>
         )
     }
 }

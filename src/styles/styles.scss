@@ -1,12 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Lato');
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Nunito|Open+Sans|Playfair+Display|Raleway');
 @import "./base/reset.scss";
 @import "./base/mixins.scss";
 @import "./index.scss";
 
 @import "./ui/navbar.scss";
 @import "./ui/footer.scss";
+@import "./ui/loading.scss";
 
 @import "./homePage/homePage.scss";
+
+@import "./faq/faq.scss";
 
 @import "./dashboard/TeamCard.scss";
 @import "./dashboard//Dashboard.scss";
