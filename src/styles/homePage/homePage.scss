@@ -50,9 +50,6 @@
 
 .homePage__hero__block__panels__text {
     padding: 10px 65px 0 65px;
-
-    // margin: 40px 0;
-    // font-size: 20px;
     text-align: center;
     color: grey;
     button {
@@ -136,10 +133,42 @@
         // max-width: 80%;
     }
 
+    .homePage__second__panels {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
     .homePage__hero__block__panels {
         img {
-            left: -40px;
+            // left: -40px;
         }
     }
 
+    .img__banner {
+        margin-top: 60px;
+        // position: relative;
+        left: 0;
+        width: 100%;
+    }
+
+    .img__marill {
+        display: none;
+    }
+
+    .img__dragonite {
+        display: none;
+    }
+
+    .homePage__hero__block__panels__text {
+        padding: 10px 0;
+        text-align: center;
+        color: grey;
+        button {
+            margin-top: 20px;
+        }
+    }
+
+    .homePage__hero__block__panels__img--pikachu {
+        left: -60px;
+    }
 }
