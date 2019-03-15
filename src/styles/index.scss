@@ -3,20 +3,59 @@ body, html {
     padding: 0;
     font-family: 'Lato', sans-serif;
     box-sizing: border-box;
+    color: grey;
 }
+
+// colours
+$off-grey: rgb(233, 233, 233);
+
 
 $desktop-breakpoint: 62rem;
 $tablet-breakpoint: 40rem;
 
+.heading {
+    text-align: center;
+    font-size: 40px;
+    color: #666666;
+}
+
+.text {
+    color: grey;
+}
+
+.page {
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
 
 .container {
     margin: 0 auto;
     max-width: 1100px;
 }
 
+.container--small {
+    width: 60%;
+    margin: 0 auto;
+}
+
 .btn {
     padding: 0;
-    background: none;
-    border-radius: 10px;
-    padding: 5px;
+    background: white;
+    border: 2px solid $off-grey;
+    border-radius: 15px;
+    padding: 10px 15px;
+    transition: 0.3s;
+    &:hover {
+        cursor: pointer;
+        background: $off-grey;
+    }
+    img {
+        max-width: 15px;
+        padding-left: 5px;
+        vertical-align: middle;
+    }
 }

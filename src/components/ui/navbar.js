@@ -4,28 +4,37 @@ import { connect } from 'react-redux';
 import { startLogin, startLogout } from '../../actions';
 
 import Logo from '../../assets/images/logo.png'
+import Google from '../../assets/images/google.png'
 
 class Navbar extends Component {
     render() {
         const { uid } = this.props;
 
         return (
-            <nav className="container">
+            <nav>
+                <div className="container navbar">
                 <Link to={ uid ? "/dash" : "/" }>
                     <div className="logo">
                         <img src={Logo} alt="logo" />
                     </div>
                 </Link>
                 <div className="navbar__buttons">
-                    <button 
-                        onClick={this.props.startLogin}
-                        className="btn"
-                        >Login</button>
-                    <button 
-                        onClick={this.props.startLogout}
-                        className="btn">
-                        Logout
-                    </button>
+                    {
+                        uid ? (
+                            <button 
+                                onClick={this.props.startLogout}
+                                className="btn">
+                                Logout
+                            </button>
+                        ) : (
+                            <button 
+                                onClick={this.props.startLogin}
+                                className="btn"
+                                >Login <img src={Google} alt="google logo" />
+                            </button>
+                        )
+                    }
+                </div>
                 </div>
             </nav>
         )

@@ -3,14 +3,11 @@ import { Redirect } from 'react-router';
 import { connect } from 'react-redux'; 
 
 import Navbar from '../ui/navbar';
+import Footer from '../ui/footer';
 import PokemonPark from './PokemonPark';
 
 
 class TeamPage extends Component {
-
-    componentDidMount() {
-        console.log('props', this.props);
-    }
 
     render() {
 
@@ -19,10 +16,11 @@ class TeamPage extends Component {
         }
 
         return (
-            <>
+            <div className="page">
                 <Navbar />
                 <PokemonPark team={this.props.team}/>
-            </>
+                <Footer />
+            </div>
         );
     }
 }

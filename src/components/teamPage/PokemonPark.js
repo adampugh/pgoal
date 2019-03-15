@@ -18,7 +18,7 @@ class PokemonPark extends Component {
         const { startUpdateTeamName } = this.props;
 
         return (
-            <>
+            <div>
                 <div className="container pokemonPark">
                     <h1>
                         <input 
@@ -32,7 +32,7 @@ class PokemonPark extends Component {
                         </div>
                     </div>
                 </div>
-            </>
+            </div>
         )
     }
 }

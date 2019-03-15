@@ -9,8 +9,8 @@ export const createTeam = (team) => async dispatch  => {
 };
 
 export const startCreateTeam = () => {
-    return (dispatch) => {
-
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
         const emptyTeam = { 
             name: `Team ${pokemonRandomName()}`,
             pokemon: [
@@ -23,7 +23,7 @@ export const startCreateTeam = () => {
             ]
         }
 
-        database.ref('teams').push(emptyTeam).then((ref) => {
+        return database.ref(`users/${uid}/teams`).push(emptyTeam).then((ref) => {
             const team = {
                 ...emptyTeam,
                 id: ref.key
@@ -39,8 +39,9 @@ export const deleteTeam = (id) => dispatch => {
 };
 
 export const startDeleteTeam = (id) => {
-    return (dispatch) => {
-        return database.ref(`teams/${id}`).remove().then(() => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
+        return database.ref(`users/${uid}/teams/${id}`).remove().then(() => {
             dispatch(deleteTeam(id));
         })
     }
@@ -56,8 +57,9 @@ export const startAddPokemon = (pokemon, teamId, index) => {
         ...pokemon,
         tasks: setupTasks()
     }
-    return (dispatch) => {
-        return database.ref(`teams/${teamId}/pokemon/${index}`).update(newPokemon).then(() => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
+        return database.ref(`users/${uid}/teams/${teamId}/pokemon/${index}`).update(newPokemon).then(() => {
             dispatch(addPokemon(pokemon, teamId));
         });
     }
@@ -70,7 +72,8 @@ export const deletePokemon = (pokemonId, teamId, emptyPokemon) => dispatch => {
 }
 
 export const startDeletePokemon = (pokemonId, teamId, index) => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
         const emptyPokemon = {
             id: pokemonId, 
             name: '', 
@@ -80,7 +83,7 @@ export const startDeletePokemon = (pokemonId, teamId, index) => {
             currentStage: 0
         }
 
-        return database.ref(`teams/${teamId}/pokemon/${index}`).update(emptyPokemon).then(() => {
+        return database.ref(`users/${uid}/teams/${teamId}/pokemon/${index}`).update(emptyPokemon).then(() => {
             dispatch(deletePokemon(pokemonId, teamId, emptyPokemon));
         });
     }
@@ -93,9 +96,9 @@ export const updateSkillName = (pokemonId, teamId, skillName) => dispatch => {
 }
 
 export const startUpdateSkillName = (pokemonId, teamId, skillName, index) => {
-    return (dispatch) => {
-
-        return database.ref(`teams/${teamId}/pokemon/${index}/skill`).set(skillName).then(() => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
+        return database.ref(`users/${uid}/teams/${teamId}/pokemon/${index}/skill`).set(skillName).then(() => {
             dispatch(updateSkillName(pokemonId, teamId, skillName));
         });
     }
@@ -108,9 +111,9 @@ export const updateTaskText = (pokemonId, teamId, taskText, index) => dispatch =
 }
 
 export const startUpdateTaskText = (pokemonId, teamId, taskText, index, pokemonIndex) => {
-    return (dispatch) => {
-
-        return database.ref(`teams/${teamId}/pokemon/${pokemonIndex}/tasks/${index}/text`).set(taskText).then(() => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
+        return database.ref(`users/${uid}/teams/${teamId}/pokemon/${pokemonIndex}/tasks/${index}/text`).set(taskText).then(() => {
             dispatch(updateTaskText(pokemonId, teamId, taskText, index));
         });
     }
@@ -122,8 +125,9 @@ export const completeTask = (pokemonId, teamId, checked, index) => dispatch => {
 }
 
 export const startCompleteTask = (pokemonId, teamId, checked, index, pokemonIndex) => {
-    return (dispatch) => {
-        return database.ref(`teams/${teamId}/pokemon/${pokemonIndex}/tasks/${index}/complete`).set(checked).then(() => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
+        return database.ref(`users/${uid}/teams/${teamId}/pokemon/${pokemonIndex}/tasks/${index}/complete`).set(checked).then(() => {
             dispatch(completeTask(pokemonId, teamId, checked, index));
         });
     }
@@ -136,8 +140,9 @@ export const canEvolve = (pokemonId, teamId, canEvolve) => dispatch => {
 }
 
 export const startCanEvolve = (pokemonId, teamId, canPokemonEvolve, pokemonIndex) => {
-    return (dispatch) => {
-        return database.ref(`teams/${teamId}/pokemon/${pokemonIndex}/canEvolve`).set(canPokemonEvolve).then(() => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
+        return database.ref(`users/${uid}/teams/${teamId}/pokemon/${pokemonIndex}/canEvolve`).set(canPokemonEvolve).then(() => {
             dispatch(canEvolve(pokemonId, teamId, canPokemonEvolve));
         });
     }
@@ -150,8 +155,9 @@ export const updateTeamName = (teamId, name) => dispatch => {
 }
 
 export const startUpdateTeamName = (teamId, name) => {
-    return (dispatch) => {
-        return database.ref(`teams/${teamId}/name`).set(name).then(() => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
+        return database.ref(`users/${uid}/teams/${teamId}/name`).set(name).then(() => {
             dispatch(updateTeamName(teamId, name));
         });
     }
@@ -188,8 +194,9 @@ export const fetchTeams = (teams) => ({
 });
 
 export const startFetchTeams = () => {
-    return (dispatch) => {
-        return database.ref('teams').once('value').then((snapshot) => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
+        return database.ref(`users/${uid}/teams`).once('value').then((snapshot) => {
             const teams = [];
 
             snapshot.forEach((childSnapshot) => {

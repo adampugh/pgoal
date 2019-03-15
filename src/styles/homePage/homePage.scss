@@ -1,0 +1,145 @@
+.homePage__hero {
+    background: url('../assets/images/homepagebg.png') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    
+}
+
+.homePage__hero__container {
+    padding: 40px;
+    padding-bottom: 80px;
+    box-sizing: border-box;
+}
+
+.homePage__hero__block {
+    width: 50%;
+    margin: 0 auto;
+    background: white;
+    border-radius: 15px;
+    padding: 40px;
+    border: 3px solid $off-grey;
+    @include boxshadow;
+}
+
+.homePage__hero__block__panels {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    // bottom: -40px;
+    .homePage__hero__block__panels__img--pikachu {
+        left: -80px;
+        width: 160%;
+        position: relative;
+        align-self: end;
+    }
+    .homePage__hero__block__panels__img--squirtle {
+        right: -20px;
+        width: 140%;
+        position: relative;
+        margin-top: 30px;
+        align-self: end;
+    }
+    .homePage__hero__block__panels__img--mockup {
+        width: 100%;
+        z-index: 10;
+        position: relative;
+        // bottom: -60px;
+    }
+}
+
+.homePage__hero__block__panels__text {
+    padding: 10px 65px 0 65px;
+
+    // margin: 40px 0;
+    // font-size: 20px;
+    text-align: center;
+    color: grey;
+    button {
+        margin-top: 20px;
+    }
+}
+
+.homePage__hero__overlay {
+    height: 240px;
+    background: white;
+    z-index: 10;
+    clip-path: polygon(
+        0 0, /* left top */
+        100% 50%, /* right top */ 
+        100% 100%, /* right bottom */
+        0 100% /* left bottom */
+    );
+    position: relative;
+    bottom: -1px;
+}
+
+.homePage__second__bg {
+    background-image: linear-gradient(white, lightgrey);
+}
+
+.homePage__second {
+    z-index: 20;
+    position: relative;
+    top: -210px;
+    background: white;
+    border-radius: 15px;
+    padding: 40px;
+    border: 3px solid $off-grey;
+    @include boxshadow;
+}
+
+
+.homePage__second__panels {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    .img__dragonite {
+        position: relative;
+        left: -120px;
+        width: 100%;
+    }
+    .img__marill {
+        position: relative;
+        width: 60%;
+        right: -230px;
+        top: 60px;
+    }
+    
+
+    .homePage__second__panels__text {
+        align-self: center;
+        img {
+            width: 100%;
+        }
+        p {
+            padding: 20px 20px;
+            text-align: center;
+            
+        }
+    }
+}
+
+.panel {
+    margin-top: 80px;
+}
+
+.img__banner {
+    margin-top: 60px;
+    position: relative;
+    left: -110px;
+    width: 120%;
+}
+
+@media (max-width: $desktop-breakpoint) {
+    .homePage__hero__block {
+        width: 70%;
+        // max-width: 80%;
+    }
+
+    .homePage__hero__block__panels {
+        img {
+            left: -40px;
+        }
+    }
+
+}

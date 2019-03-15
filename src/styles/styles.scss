@@ -1,8 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Lato');
 @import "./base/reset.scss";
+@import "./base/mixins.scss";
 @import "./index.scss";
 
 @import "./ui/navbar.scss";
+@import "./ui/footer.scss";
+
+@import "./homePage/homePage.scss";
 
 @import "./dashboard/TeamCard.scss";
 @import "./dashboard//Dashboard.scss";
