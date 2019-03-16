@@ -8,7 +8,8 @@
     -webkit-box-shadow: inset 0px 0px 47px -6px rgba(0,0,0,0.75);
     -moz-box-shadow: inset 0px 0px 47px -6px rgba(0,0,0,0.75);
     box-shadow: inset 0px 0px 47px -6px rgba(0,0,0,0.75);
-    
+    padding-bottom: 300px;
+    margin-bottom: -200px;
 }
 
 .faq__block {
@@ -30,4 +31,44 @@
 .homePage__second--faq {
     margin-top: 80px;
     top: 0;
+}
+
+
+
+.img__giratina {
+    position: relative;
+    width: 100%;
+    right: -60px;
+    top: 10px;
+}
+
+.img__mew {
+    width: 80%;
+    position: relative;
+    left: -60px;
+}
+
+.img__raichu {
+    width: 100%;
+    position: relative;
+}
+
+
+.footer--faq {
+    // top: -100px;
+    position: relative;
+    // margin-bottom: -200px;
+}
+
+
+@media (max-width: $desktop-breakpoint) {
+    .img__giratina {
+        display: none;
+    }
+    .img__mew {
+        display: none;
+    }
+    .img__raichu {
+        display: none;
+    }
 }

@@ -3,9 +3,9 @@ import { FaStar, FaGithub, FaTwitter } from 'react-icons/fa';
 
 import Logo from '../../assets/images/logo.png'
 
-const Footer = () => (
+const Footer = (props) => (
     // <footer>
-    <div className="footer">
+    <div className={`footer ${props.additionalClasses}`}>
         <img src={Logo} alt="logo" />
         <div className="footer__links">
             <a href="https://github.com/adampugh/pgoal" target="_blank" rel="noopener noreferrer"><FaGithub /></a>
