@@ -27,6 +27,7 @@ class Dashboard extends Component {
             <>
             <Navbar />
             <div className="content">
+            <div className="TeamCard__bg">
             {
                 this.props.teams.map(team => 
                     (
@@ -39,7 +40,10 @@ class Dashboard extends Component {
                 )
             }
             <div className="teamCard teamCard--create">
-                <button onClick={this.handleStartCreateTeam}>Create new team</button>
+                {/* <div className="teamCard__create__border"> */}
+                    <button onClick={this.handleStartCreateTeam}>Create new team</button>
+                {/* </div> */}
+            </div>
             </div>
             </div>
             <Footer />

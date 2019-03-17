@@ -16,7 +16,7 @@ class Faq extends Component {
                 <div className="faq__bg">
                     <div className="homePage__second homePage__second--faq container--small">
                         <div className="homePage__second__panels">
-                            <ScrollAnimation animateIn="fadeInLeft">
+                            <ScrollAnimation animateIn="fadeInRight">
                                 <img src={Mew} alt="mew" className="img__mew"/>
                             </ScrollAnimation>
                             <div className="homePage__second__panels__text">
@@ -32,7 +32,7 @@ class Faq extends Component {
                                     <p>All pokémon available on the pokéapi can be found on pokéskills. Some pokemon may fall under different names for different forms, for example the pokémon Giratina can be found by searching for 'giratina-altered'.</p>
                                 </ScrollAnimation>
                             </div>
-                            <ScrollAnimation animateIn="fadeInRight">
+                            <ScrollAnimation animateIn="fadeInLeft">
                                 <img src={Giratina} alt="giratina" className="img__giratina" />
                             </ScrollAnimation>
                             <ScrollAnimation animateIn="fadeInRight">

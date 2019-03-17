@@ -1,3 +1,30 @@
+.TeamPage__bg {
+    background: url('../assets/images/homepagebg.png') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    padding: 120px 0;
+    -webkit-box-shadow: inset 0px 0px 47px -6px rgba(0,0,0,0.75);
+    -moz-box-shadow: inset 0px 0px 47px -6px rgba(0,0,0,0.75);
+    box-shadow: inset 0px 0px 47px -6px rgba(0,0,0,0.75);
+    padding-bottom: 200px;
+    margin-bottom: -200px;
+}
+
+.TeamPage__pokemonPark {
+    border: 3px solid lightgrey;
+    border-radius: 10px;
+    background: white;
+    width: 70%;
+    margin: 0 auto;
+    padding: 20px 5px;
+    -webkit-box-shadow: 10px 10px 62px -23px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 62px -23px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 62px -23px rgba(0,0,0,0.75);
+}
+
+
 .teamCard {
     padding: 20px;
     border: 2px solid lightgrey;

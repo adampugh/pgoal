@@ -47,7 +47,7 @@ class HomePage extends Component {
                 <div className="homePage__second__bg">
                     <div className="homePage__second container--small">
                         <div className="homePage__second__panels">
-                            <ScrollAnimation animateIn="fadeInLeft">
+                            <ScrollAnimation animateIn="fadeInRight">
                                 <img src={Dragonite} alt="dragonite" className="img__dragonite"/>
                             </ScrollAnimation>
                             <div className="homePage__second__panels__text">
@@ -64,7 +64,7 @@ class HomePage extends Component {
                                     <img src={Evolution} alt="evolution" />
                                 </ScrollAnimation>
                             </div>
-                            <ScrollAnimation animateIn="fadeInRight">
+                            <ScrollAnimation animateIn="fadeInLeft">
                                 <img src={Marill} alt="marill" className="img__marill" />
                             </ScrollAnimation>
                         </div>

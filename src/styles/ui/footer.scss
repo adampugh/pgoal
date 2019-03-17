@@ -38,5 +38,10 @@ footer {
         padding: 0 10px;
         color: white;
         font-size: 20px;
+        transition: 0.3s;
+        &:hover {
+            color: lightgrey;
+            cursor: pointer;
+        }
     }
 }

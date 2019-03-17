@@ -19,9 +19,13 @@ class TeamPage extends Component {
             <>
                 <Navbar />
                 <div className="content">
-                    <PokemonPark team={this.props.team}/>
+                    <div className="TeamPage__bg">
+                        <div className="TeamPage__pokemonPark">
+                            <PokemonPark team={this.props.team}/>
+                        </div>
+                    </div>
                 </div>
-                <Footer />
+                <Footer additionalClasses="footer--faq" />
             </>
         );
     }
