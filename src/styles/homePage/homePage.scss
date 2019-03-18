@@ -46,6 +46,8 @@
         width: 100%;
         z-index: 10;
         position: relative;
+        top: 40px;
+        margin: 0 auto;
         // bottom: -60px;
     }
 }
@@ -131,6 +133,11 @@
     position: relative;
     left: -110px;
     width: 120%;
+}
+
+.img__mockup {
+    position: relative;
+    top: 20px;
 }
 
 .homePage__bottom__bg {

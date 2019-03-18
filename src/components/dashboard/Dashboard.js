@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { startCreateTeam, startDeleteTeam } from '../../actions';
 import ScrollAnimation from 'react-animate-on-scroll';
 import Modal from 'react-responsive-modal';
+import { Line } from 'rc-progress';
 
 import Navbar from '../ui/navbar';
 import Footer from '../ui/footer';
@@ -20,16 +21,29 @@ import Bulbasaur from '../../assets/images/bulbasaur.png';
 
 const images = { Pikachu, Eevee, Gengar, Umbreon, Jigglypuff, Marill, Squirtle, Oddish, Bulbasaur }
 
+const getProgress = (team) => {
+    let total = 0;
+    team.pokemon.map(pokemon => {
+        total += pokemon.percentage;
+    });
+    return total / 6;
+}
 
 class Dashboard extends Component {
     state = {
         open: false,
-        mascotName: null
+        mascotName: null,
+        teamProgress: {}
     }
 
     componentDidMount() {
         const mascotName = window.localStorage.getItem('mascotName');
         this.setState({ mascotName });
+        let teamProgress = {};
+        this.props.teams.map(team => {
+            teamProgress[team.name] = getProgress(team);
+        });
+        this.setState({ teamProgress });
     }
 
     onOpenModal = () => {
@@ -57,6 +71,7 @@ class Dashboard extends Component {
     render() {
         const { open, mascotName } = this.state;
         const pokemonPicture =  mascotName ? images[mascotName] : Pikachu;
+        
 
         return (
             <>
@@ -88,7 +103,22 @@ class Dashboard extends Component {
                                     <ScrollAnimation animateIn="fadeIn">
                                         <h1 className="heading">Pokémon Teams</h1>
                                         <p>Click the 'Create Team' button to add a new team and build up your skills!</p>
-                                        
+                                        <div className="TeamCard__block__intro__progress">
+                                            {
+                                                this.props.teams.map(team => {
+                                                    let percentage = Math.round(getProgress(team));
+                                                    percentage = isNaN(percentage) ? 0 : percentage;
+                                                    return (
+                                                    <div key={team.id}>
+                                                        <div className="TeamCard__block__intro__progress__bars">
+                                                            <h1>{team.name}</h1>
+                                                            <p>{`${percentage}%`}</p>
+                                                        </div>
+                                                        <Line percent={percentage} strokeWidth="4" strokeColor="#D3D3D3" />
+                                                    </div>
+                                                )})
+                                            }
+                                        </div>
                                     </ScrollAnimation>
                                 </div>
                                 

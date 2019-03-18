@@ -72,6 +72,19 @@
     width: 90%;
 }
 
+.TeamCard__block__intro__progress {
+    margin-top: 20px;
+    h1 {
+        text-align: left;
+        margin: 10px 0;
+    }
+}
+
+.TeamCard__block__intro__progress__bars {
+    display: flex;
+    justify-content: space-between;
+}
+
 
 @media (max-width: $desktop-breakpoint) {
     .TeamCard__block {

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { startUpdateTaskText, startCompleteTask } from '../../actions';
 import Modal from 'react-responsive-modal';
+import { FaPlusSquare } from 'react-icons/fa';
 
 class Task extends Component {
     state = {
@@ -35,8 +36,19 @@ class Task extends Component {
     }
 
     handleTaskToggle = async () => {
-        const { startCompleteTask, checkCanPokemonEvolve, pokemonId, teamId, task, index, pokemonIndex } = this.props;
-        await startCompleteTask(pokemonId, teamId, !task.complete, index, pokemonIndex);
+        const percentageIncrease = {
+            7: (100 / 70),
+            8: (100 / 80),
+            9: (100 / 90)
+        }
+
+        const { startCompleteTask, checkCanPokemonEvolve, pokemonId, teamId, task, index, pokemonIndex, stages, percentage } = this.props;
+        
+        let updatedPercentage = !task.complete 
+            ? percentage + percentageIncrease[stages] 
+            : percentage - percentageIncrease[stages]
+
+        await startCompleteTask(pokemonId, teamId, !task.complete, index, pokemonIndex, updatedPercentage);
         checkCanPokemonEvolve();
     }
 
@@ -61,16 +73,18 @@ class Task extends Component {
                     name
                         ? (
                             <>
-                                <p onClick={this.onOpenModal}>{task.text || 'Add a Task'}</p>
-                                <input 
-                                    type="checkbox" 
-                                    checked={task.complete}
-                                    onChange={() => this.handleTaskToggle()} />
-                                <span className="checkmark"></span>
+                                <h1 onClick={this.onOpenModal}>{task.text || <FaPlusSquare />}</h1>
+                                <div className="input__checkbox">
+                                    <input 
+                                        type="checkbox" 
+                                        checked={task.complete}
+                                        onChange={() => this.handleTaskToggle()} />
+                                    <span className="checkmark"></span>
+                                </div>
                             </>
                         ) : (
                             <div>
-                                <input value="" disabled />
+                                {/* <input value="" disabled /> */}
                             </div>
                         )
                 }

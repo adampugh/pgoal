@@ -8,7 +8,13 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-gap: 15px;
+    // width: 100%;
     // height: 100px;
+}
+
+.pokemonPark__heading {
+    padding: 40px 0;
+    cursor: pointer;
 }
 
 @media (max-width: $desktop-breakpoint) {

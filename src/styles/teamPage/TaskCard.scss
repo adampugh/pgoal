@@ -8,8 +8,13 @@
 }
 
 .taskCard__tasks {
+    border: 2px solid lightgrey;
+    border-radius: 15px;
+    padding: 15px 8px;
+    margin-bottom: 20px;
+    @include boxshadow;
     p {
-        max-width: 116px;
+        // max-width: 116px;
         text-align: left;
         border: none;
         // border-bottom: 1px solid grey;
@@ -19,13 +24,46 @@
 
 .taskCard__tasks__task {
     margin: 0 auto;
-    max-width: 136px;
-    display: flexbox;
-    justify-content: space-between;
-    border-bottom: 1px solid lightgrey;
+    // max-width: 136px;
+    // border: 2px solid lightgrey;
+    // border-radius: 15px;
+    // padding: 5px;
+    // margin: 10px 0;
+    margin-bottom: 10px;
+    h1 {
+        border-bottom: 1px solid lightgrey;
+    }
+    // border-bottom: 1px solid lightgrey;
     p {
         display: inline;
         text-overflow: ellipsis;
     }
 }
 
+// .taskCard__tasks__task__flex {
+//     display: flex;
+//     justify-content: space-between;
+//     border: 1px solid red;
+//     h1 {
+//         border: 1px solid blue;
+//     }
+//     input {
+//         // margin-top: 5px;
+//         // box-sizing: border-box;
+//         position: relative;
+//         border: 1px solid blue;
+//         right: 0;
+//     }
+// }
+
+.input__checkbox {
+    text-align: right;
+    margin-top: 5px;
+}
+
+.taskCard__title {
+    margin: 10px 0;
+    h1, h2 {
+        padding: 10px 0;
+    }
+}

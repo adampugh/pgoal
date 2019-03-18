@@ -155,7 +155,7 @@ class PokemonCard extends Component {
                                 currentStage: (currentStage + 1),
                                 stages: this.state.stages + 6, // 1 (egg) + 5 (stars)
                                 sprite: shinyEvolution ? data.sprites.front_shiny : data.sprites.front_default,
-                                percentage: 0,
+                                percentage: this.props.pokemon.percentage,
                                 percentageValue: null,
                                 id: this.props.pokemon.id,
                                 evolutionChainId: this.state.evolutionChainId,
@@ -171,7 +171,7 @@ class PokemonCard extends Component {
             }).catch((error) => {
                 this.setState({
                     noSearchResults: true
-                })
+                });
             })
     }
 
@@ -291,7 +291,7 @@ class PokemonCard extends Component {
 
     render() {
         const { sprite, name, canEvolve, currentStage } = this.props.pokemon;
-        const { open, searchResultSprite, noSearchResults, query, openDelete, openEvolve, stars } = this.state;
+        const { open, searchResultSprite, noSearchResults, query, openDelete, openEvolve, stars, evolutionsArr } = this.state;
 
         return (
             <div className="pokemonCard">
@@ -312,7 +312,7 @@ class PokemonCard extends Component {
                                 </form>
                                 <div>
                                     { searchResultSprite && (
-                                        <div>
+                                        <div className="pokemonCard__modal__searchResults">
                                             <img src={searchResultSprite} alt="sprite"/>
                                             <button className="btn" onClick={this.addPokemon}>Add {this.state.data.name}</button>
                                         </div>
@@ -335,20 +335,24 @@ class PokemonCard extends Component {
                     </div>
                 </Modal>
                 <Modal open={openEvolve} onClose={this.onCloseEvolveModal} center>
+                    <div className="modal__content">
                     <h1>Congrats!</h1>
+                    <div className={evolutionsArr.length < 2 ? "" : evolutionsArr.length > 2 ? "pokemonCard__modal__evolutions--three" : "pokemonCard__modal__evolutions--two"}>
                     { this.state.evolutionsArr.map((pokemon, i) => {
                         return (
                             <div key={i}>
                                 { pokemon.sprite && (
-                                    <>
+                                    <div className="pokemonCard__modal__searchResults">
                                     <img src={pokemon.sprite} alt="sprite" />
                                     { Array(stars).fill(true).map((star, i) => <FaStar key={i} />) }
                                     <button className="btn" onClick={() => this.evolvePokemon(pokemon.species.name)}>Evolve</button>
-                                    </>
+                                    </div>
                                 )}
                             </div>
                         )
                     })}
+                    </div>
+                    </div>
                 </Modal>
                 <div className="pokemonCard__icons">
                     <FaTrashAlt onClick={this.onOpenDeleteModal} />

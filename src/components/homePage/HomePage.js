@@ -8,7 +8,7 @@ import Footer from '../ui/footer';
 import Google from '../../assets/images/google.png';
 import Pikachu from '../../assets/images/pikachu.png';
 import Squirtle from '../../assets/images/squirtle.png';
-import Mockup from '../../assets/images/mockup.png';
+import Mockup from '../../assets/images/mockup2.png';
 import Dragonite from '../../assets/images/dragonite.png';
 import Marill from '../../assets/images/marill.png';
 import Team from '../../assets/images/team2.png';
@@ -34,8 +34,7 @@ class HomePage extends Component {
                             </div>
                             <div className="homePage__hero__block__panels">
                                 <img src={Pikachu} alt="pikachu" className="homePage__hero__block__panels__img--pikachu"/>
-                                {/* <img src={Mockup} alt="app mockup" className="homePage__hero__block__panels__img--mockup"/> */}
-                                <div></div>
+                                <img src={Mockup} alt="app mockup" className="homePage__hero__block__panels__img--mockup"/>
                                 <img src={Squirtle} alt="squirtle" className="homePage__hero__block__panels__img--squirtle"/>
                             </div>
                         </div>

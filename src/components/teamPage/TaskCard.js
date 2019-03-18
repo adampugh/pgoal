@@ -43,7 +43,7 @@ class TaskCard extends Component {
     }
 
     render() {
-        const { tasks, id, skill, name } = this.props.pokemon;
+        const { tasks, id, skill, name, stages, percentage } = this.props.pokemon;
         const { teamId, index } = this.props;
         const { open, skillName } = this.state;
 
@@ -62,6 +62,7 @@ class TaskCard extends Component {
                 </Modal>
                 <div className="taskCard__title">
                     <h2 onClick={this.onOpenModal}>{skill || 'Add Skill'}</h2>
+                    <h1>{!!percentage ? `${Math.round(percentage)}%` : `0%`}</h1>
                 </div>
                 <div className="taskCard__tasks">
                     {
@@ -75,6 +76,8 @@ class TaskCard extends Component {
                                 pokemonId={id}
                                 checkCanPokemonEvolve={this.checkCanPokemonEvolve}
                                 pokemonIndex={index}
+                                stages={stages}
+                                percentage={percentage}
                             />
                         ))
                     }

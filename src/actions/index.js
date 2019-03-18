@@ -120,15 +120,17 @@ export const startUpdateTaskText = (pokemonId, teamId, taskText, index, pokemonI
 }
 
 // complete task
-export const completeTask = (pokemonId, teamId, checked, index) => dispatch => {
-    dispatch({ type: 'COMPLETE_TASK', pokemonId, teamId, checked, index});
+export const completeTask = (pokemonId, teamId, checked, index, updatedPercentage) => dispatch => {
+    dispatch({ type: 'COMPLETE_TASK', pokemonId, teamId, checked, index, updatedPercentage });
 }
 
-export const startCompleteTask = (pokemonId, teamId, checked, index, pokemonIndex) => {
+export const startCompleteTask = (pokemonId, teamId, checked, index, pokemonIndex, updatedPercentage) => {
     return (dispatch, getState) => {
         const uid = getState().auth.uid;
         return database.ref(`users/${uid}/teams/${teamId}/pokemon/${pokemonIndex}/tasks/${index}/complete`).set(checked).then(() => {
-            dispatch(completeTask(pokemonId, teamId, checked, index));
+            return database.ref(`users/${uid}/teams/${teamId}/pokemon/${pokemonIndex}/percentage`).set(updatedPercentage).then(() => {
+                dispatch(completeTask(pokemonId, teamId, checked, index, updatedPercentage));
+            });
         });
     }
 }

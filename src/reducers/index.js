@@ -121,6 +121,7 @@ export default function reducer(state = {}, action) {
                                 } else {
                                     return { 
                                         ...pokemon, 
+                                        percentage: action.updatedPercentage,
                                         tasks: pokemon.tasks.map((task, i) => {
                                             if (i !== action.index) {
                                                 return {...task}

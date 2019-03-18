@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { startUpdateTeamName } from '../../actions';
 import Modal from 'react-responsive-modal';
+import ScrollAnimation from 'react-animate-on-scroll';
 
 import Card from './Card';
 
@@ -53,7 +54,8 @@ class PokemonPark extends Component {
                     </div>
                 </Modal>
                 <div className="container pokemonPark">
-                    <h1 className="heading" onClick={this.onOpenModal}>
+                    <ScrollAnimation animateIn="fadeIn">
+                    <h1 className="heading pokemonPark__heading" onClick={this.onOpenModal}>
                         { name }
                     </h1>
                     <div className="pokemonPark__bg">
@@ -61,6 +63,7 @@ class PokemonPark extends Component {
                             {this.props.team.pokemon.map((pokemon, i) => <Card pokemon={pokemon} key={i} teamId={teamId} index={i} />)} 
                         </div>
                     </div>
+                    </ScrollAnimation>
                 </div>
             </div>
         )
