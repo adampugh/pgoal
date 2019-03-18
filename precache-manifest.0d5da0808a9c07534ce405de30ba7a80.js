@@ -13,7 +13,7 @@ self.__precacheManifest = [
   },
   {
     "revision": "54c618cacf93da0fd7ce52b9c4f1a2a6",
-    "url": "/pgoal/static/media/homepagebg.54c618ca.png"
+    "url": "/pgoal/static/media/bg1.54c618ca.png"
   },
   {
     "revision": "5d0d76cd51bb4a519334",
@@ -101,7 +101,7 @@ self.__precacheManifest = [
   },
   {
     "revision": "54c618cacf93da0fd7ce52b9c4f1a2a6",
-    "url": "/pgoal/static/media/bg1.54c618ca.png"
+    "url": "/pgoal/static/media/homepagebg.54c618ca.png"
   },
   {
     "revision": "5d0d76cd51bb4a519334",
