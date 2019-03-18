@@ -28,7 +28,6 @@
 .homePage__hero__block__panels {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    // bottom: -40px;
     .homePage__hero__block__panels__img--pikachu {
         left: -80px;
         width: 160%;
@@ -48,7 +47,6 @@
         position: relative;
         top: 40px;
         margin: 0 auto;
-        // bottom: -60px;
     }
 }
 
@@ -77,8 +75,6 @@
 
 .homePage__second__bg {
     background-image: linear-gradient(white, lightgrey);
-    // position: absolute;
-    // height: 80%;
     height: calc(100% - 200px);
 }
 
@@ -172,7 +168,6 @@
 @media (max-width: $desktop-breakpoint) {
     .homePage__hero__block {
         width: 70%;
-        // max-width: 80%;
     }
 
     .homePage__second__panels {
@@ -188,7 +183,6 @@
 
     .img__banner {
         margin-top: 60px;
-        // position: relative;
         left: 0;
         width: 100%;
     }
