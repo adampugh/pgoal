@@ -1,30 +1,60 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { startUpdateTeamName } from '../../actions';
+import Modal from 'react-responsive-modal';
 
 import Card from './Card';
 
 
-// 1. look at state coming from reducer
-// 2. map over state for each pokemon card
-// 3. render card for each passing data or not passing data
-
-
 class PokemonPark extends Component {
+    state = {
+        open: false,
+        teamName: ''
+    }
+
+    onOpenModal = () => {
+        this.setState({ open: true });
+    };
     
+    onCloseModal = () => {
+        this.setState({ open: false, teamName: '' });
+    };
+
+    handleInputChange = (e) => {
+        this.setState({
+          teamName: e.target.value
+        });
+    }
+
+    submitTeamName = () => {
+        const { teamName } = this.state;
+        if (teamName.length > 0) {
+            this.props.startUpdateTeamName(this.props.team.id, teamName);
+        }
+        this.onCloseModal();
+    }
+
     render() {
         const teamId = this.props.team.id;
         const { name } = this.props.team;
-        const { startUpdateTeamName } = this.props;
+        const { open, teamName } = this.state;
 
         return (
             <div>
-                <div className="container pokemonPark">
-                    <h1>
+                <Modal open={open} onClose={this.onCloseModal} center>
+                    <div className="modal__content">
+                        <h1>Update team name</h1>
                         <input 
-                            value={name}
-                            onChange={(e) => startUpdateTeamName(teamId, e.target.value)}
+                            value={teamName}
+                            placeholder={name}
+                            onChange={(e) => this.handleInputChange(e)}
                         />
+                        <button className="btn" onClick={this.submitTeamName}>Save</button>
+                    </div>
+                </Modal>
+                <div className="container pokemonPark">
+                    <h1 className="heading" onClick={this.onOpenModal}>
+                        { name }
                     </h1>
                     <div className="pokemonPark__bg">
                         <div className="pokemonPark__card">

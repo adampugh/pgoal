@@ -26,10 +26,13 @@ class TeamCard extends Component {
         return (
             <div className="container">
                 <Modal open={open} onClose={this.onCloseModal} center>
-                    <h1>Are you sure you want to delete?</h1>
-                    
-                    <button className="btn" onClick={this.props.handleDeleteTeam}>Yes</button>
-                    <button className="btn" onClick={this.onCloseModal}>No</button>
+                    <div className="modal__content">
+                        <h1>Are you sure you want to delete?</h1>
+                        <div className="modal__content__deleteButtons">
+                            <button className="btn" onClick={this.props.handleDeleteTeam}>Yes</button>
+                            <button className="btn" onClick={this.onCloseModal}>No</button>
+                        </div>
+                    </div>
                 </Modal>
                 <div className="teamCard">
                     <div className="teamCard__title">

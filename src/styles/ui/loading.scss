@@ -2,12 +2,26 @@
     display: grid;
     height: 100vh;
     width: 100vw;
+    // background: url('../assets/images/homepagebg.png') no-repeat center center fixed;
+    // -webkit-background-size: cover;
+    // -moz-background-size: cover;
+    // -o-background-size: cover;
+    // background-size: cover;
     div {
         align-self: center;
         margin: 0 auto;
         text-align: center;
-        img {
+        max-width: 90%;
+        .loadingPage__pikachu {
             height: 300px;
+            display: block;
+            margin: 0 auto;
+        }
+        .img__logo {
+            // width: 100%;
+            // max-width: 5%;
+            width: 50px;
+            display: block;
         }
     }
 }

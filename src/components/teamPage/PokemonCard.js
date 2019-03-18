@@ -296,6 +296,7 @@ class PokemonCard extends Component {
         return (
             <div className="pokemonCard">
                 <Modal open={open} onClose={this.onCloseModal} center>
+                    <div className="modal__content">
                     {
                         !!name 
                             ? <h1>Please delete current Pokemon</h1>
@@ -307,7 +308,7 @@ class PokemonCard extends Component {
                                         onChange={(e) => this.handleInputChange(e)}
                                         value={query}
                                     />
-                                    <button onClick={e => this.searchForPokemon(e)}><FaSearch /></button>
+                                    <button className="btn" onClick={e => this.searchForPokemon(e)}><FaSearch /></button>
                                 </form>
                                 <div>
                                     { searchResultSprite && (
@@ -321,13 +322,17 @@ class PokemonCard extends Component {
                                 </>
                             )
                     }
-                    
+                    </div>
                 </Modal>
                 <Modal open={openDelete} onClose={this.onCloseDeleteModal} center>
-                    <h1>Are you sure you want to delete?</h1>
-                    
-                    <button className="btn" onClick={this.deletePokemon}>Yes</button>
-                    <button className="btn" onClick={this.onCloseDeleteModal}>No</button>
+                    <div className="modal__content">
+                        <h1>Are you sure you want to delete?</h1>
+                        
+                        <div className="modal__content__deleteButtons">
+                            <button className="btn" onClick={this.deletePokemon}>Yes</button>
+                            <button className="btn" onClick={this.onCloseDeleteModal}>No</button>
+                        </div>
+                    </div>
                 </Modal>
                 <Modal open={openEvolve} onClose={this.onCloseEvolveModal} center>
                     <h1>Congrats!</h1>

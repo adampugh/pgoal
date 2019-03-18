@@ -61,17 +61,19 @@ class Dashboard extends Component {
         return (
             <>
                 <Modal open={open} onClose={this.onCloseModal} center>
-                    <h1>Select a Pokemon</h1>
-                    <div className="Dash__modal">
-                        <img src={Pikachu} alt="pikachu" onClick={() => this.pickPokemon('Pikachu')} />
-                        <img src={Eevee} alt="eevee" onClick={() => this.pickPokemon('Eevee')} />
-                        <img src={Gengar} alt="gengar" onClick={() => this.pickPokemon('Gengar')} />
-                        <img src={Umbreon} alt="umbreon" onClick={() => this.pickPokemon('Umbreon')} />
-                        <img src={Jigglypuff} alt="jigglypuff" onClick={() => this.pickPokemon('Jigglypuff')} />
-                        <img src={Marill} alt="marill" onClick={() => this.pickPokemon('Marill')} />
-                        <img src={Oddish} alt="oddish" onClick={() => this.pickPokemon('Oddish')} />
-                        <img src={Squirtle} alt="squirtle" onClick={() => this.pickPokemon('Squirtle')} />
-                        <img src={Bulbasaur} alt="bulbasaur" onClick={() => this.pickPokemon('Bulbasaur')} />
+                    <div className="modal__content">
+                        <h1>Select a Pokemon</h1>
+                        <div className="Dash__modal">
+                            <img src={Pikachu} alt="pikachu" onClick={() => this.pickPokemon('Pikachu')} />
+                            <img src={Eevee} alt="eevee" onClick={() => this.pickPokemon('Eevee')} />
+                            <img src={Gengar} alt="gengar" onClick={() => this.pickPokemon('Gengar')} />
+                            <img src={Umbreon} alt="umbreon" onClick={() => this.pickPokemon('Umbreon')} />
+                            <img src={Jigglypuff} alt="jigglypuff" onClick={() => this.pickPokemon('Jigglypuff')} />
+                            <img src={Marill} alt="marill" onClick={() => this.pickPokemon('Marill')} />
+                            <img src={Oddish} alt="oddish" onClick={() => this.pickPokemon('Oddish')} />
+                            <img src={Squirtle} alt="squirtle" onClick={() => this.pickPokemon('Squirtle')} />
+                            <img src={Bulbasaur} alt="bulbasaur" onClick={() => this.pickPokemon('Bulbasaur')} />
+                        </div>
                     </div>
                 </Modal>
                 <Navbar />
@@ -104,9 +106,11 @@ class Dashboard extends Component {
                                 )
                             )
                         }
-                        <div className="teamCard teamCard--create">
-                            <button onClick={this.handleStartCreateTeam}>Create new team</button> 
-                        </div>
+                        <ScrollAnimation animateIn="fadeIn">
+                            <div className="teamCard teamCard--create">
+                                <button onClick={this.handleStartCreateTeam}>Create new team</button> 
+                            </div>
+                        </ScrollAnimation>
                         </div>
                     </div>
                 </div>

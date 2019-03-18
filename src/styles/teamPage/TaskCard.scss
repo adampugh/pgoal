@@ -8,7 +8,7 @@
 }
 
 .taskCard__tasks {
-    input {
+    p {
         max-width: 116px;
         text-align: left;
         border: none;
@@ -23,8 +23,9 @@
     display: flexbox;
     justify-content: space-between;
     border-bottom: 1px solid lightgrey;
-    input {
+    p {
         display: inline;
+        text-overflow: ellipsis;
     }
 }
 

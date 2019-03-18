@@ -37,10 +37,11 @@
 .TeamCard__block {
     background: white;
     border: 2px solid lightgrey;
-    width: 60%;
+    width: 66%;
     margin: 0 auto;
     padding-bottom: 80px;
     border-radius: 15px;
+    @include boxshadow;
 }
 
 .TeamCard__block__intro {
@@ -59,9 +60,11 @@
     padding: 20px;
     grid-gap: 10px;
     max-width: 100%;
+    grid-row-gap: 20px;
     img {
-        width: 100%;
-        // margin: 20px;
+        width: 80%;
+        margin: 0 auto;
+        box-sizing: border-box;
     }
 }
 
@@ -74,9 +77,14 @@
     .TeamCard__block {
         width: 90%;
         padding: 0 10px;
+        padding-bottom: 40px;
     }
 
     .TeamCard__block__intro {
         grid-template-columns: 1fr;
+    }
+
+    .TeamCard__block__intro__img {
+            margin-bottom: 20px;
     }
 }
