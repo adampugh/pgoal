@@ -34,11 +34,49 @@
     margin-bottom: -200px;
 }
 
-// .teamCard__create__border {
-//     // margin: 1px;
-//     border: 2px dashed lightgrey;
-//     width: 100%;
-//     height: 100%;
-//     border-radius: 10px;
-//     // margin: 
-// }
+.TeamCard__block {
+    background: white;
+    border: 2px solid lightgrey;
+    width: 60%;
+    margin: 0 auto;
+    padding-bottom: 80px;
+    border-radius: 15px;
+}
+
+.TeamCard__block__intro {
+    padding: 40px 40px 10px 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
+    p {
+        padding-top: 10px;
+    }
+}
+
+.Dash__modal {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 20px;
+    grid-gap: 10px;
+    max-width: 100%;
+    img {
+        width: 100%;
+        // margin: 20px;
+    }
+}
+
+.TeamCard__block__intro__img {
+    width: 90%;
+}
+
+
+@media (max-width: $desktop-breakpoint) {
+    .TeamCard__block {
+        width: 90%;
+        padding: 0 10px;
+    }
+
+    .TeamCard__block__intro {
+        grid-template-columns: 1fr;
+    }
+}
