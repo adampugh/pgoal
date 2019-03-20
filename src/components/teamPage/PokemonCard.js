@@ -81,7 +81,7 @@ class PokemonCard extends Component {
         e.preventDefault();
         this.resetSearch();
 
-        pokeapi.get(`/pokemon/${ this.state.query }`)
+        pokeapi.get(`/pokemon/${ this.state.query.toLowerCase() }`)
             .then((response) => {
                 this.setState({
                     searchResultSprite: response.data.sprites.front_default,
