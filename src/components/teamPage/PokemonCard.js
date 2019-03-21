@@ -27,6 +27,7 @@ class PokemonCard extends Component {
         evolutionsSprites: [],
         stars: 0,
         shinyEvolution: false,
+        mega: false
     }
 
     onOpenModal = () => {
@@ -107,8 +108,30 @@ class PokemonCard extends Component {
 
 
     addPokemon = () => {
-        const { data, stars, shinyEvolution } = this.state;
-        const { skill, currentStage } = this.props.pokemon;
+        const { data, stars, evolutionChainId, mega } = this.state;
+        const { skill, currentStage, stages, percentage, id } = this.props.pokemon;
+        
+        if (mega) {
+            const pokemon = {
+                name: data.name,
+                currentStage: (currentStage + 1),
+                stages,
+                sprite: data.sprites.front_default,
+                percentage,
+                percentageValue: null,
+                id,
+                evolutionChainId,
+                canEvolve: false,
+                skill: skill || '',
+                stars: stars || 0,
+            }
+
+            console.log(pokemon);
+    
+            this.props.startAddPokemon(pokemon, this.props.teamId, this.props.index);
+            return this.onCloseModal();
+        }
+
 
         pokeapi.get(`/pokemon-species/${data.name}`)
             .then((response) => {
@@ -154,7 +177,8 @@ class PokemonCard extends Component {
                                 name: data.name,
                                 currentStage: (currentStage + 1),
                                 stages: this.state.stages + 6, // 1 (egg) + 5 (stars)
-                                sprite: shinyEvolution ? data.sprites.front_shiny : data.sprites.front_default,
+                                // sprite: shinyEvolution ? data.sprites.front_shiny : data.sprites.front_default,
+                                sprite: data.sprites.front_default,
                                 percentage: this.props.pokemon.percentage,
                                 percentageValue: null,
                                 id: this.props.pokemon.id,
@@ -224,20 +248,53 @@ class PokemonCard extends Component {
                 } else {
                     // final evolution
                     if (stars === 5) {
-                        // get shiny sprite
-                        // could also check for megas in the future => search 'pokemon/gengar-mega'
+                        
                         pokeapi.get(`/pokemon/${name}`)
                             .then((response) => {
-                                this.setState({
-                                    evolutionsArr: [{
-                                        name,
-                                        sprite: response.data.sprites.front_shiny,
-                                        species: {
-                                            name
+                                // for shiny
+                                if (response.data.sprites.front_shiny) {
+                                    this.setState({
+                                        evolutionsArr: [
+                                            ...this.state.evolutionsArr,
+                                            {
+                                                name,
+                                                sprite: response.data.sprites.front_shiny,
+                                                species: {
+                                                    name
+                                                },
+                                                shiny: true
+                                            }
+                                        ],
+                                        // shinyEvolution: true
+                                    })
+                                }
+
+                                // for megas & other forms
+                                pokeapi.get(`/pokemon-species/${response.data.species.name}`)
+                                    .then(response => {
+                                        const { varieties } = response.data;
+                                        if (varieties.length > 1) {
+                                            varieties.forEach(variety => {
+                                                pokeapi.get(`/pokemon/${variety.pokemon.name}`)
+                                                    .then((response) => {
+                                                        console.log(response.data);
+                                                        this.setState({
+                                                            evolutionsArr: [
+                                                                ...this.state.evolutionsArr,
+                                                                {
+                                                                    name: response.data.name,
+                                                                    sprite: response.data.sprites.front_default,
+                                                                    species: {
+                                                                        name: response.data.name
+                                                                    },
+                                                                    isDefault: !response.data.is_default
+                                                                }
+                                                            ]
+                                                        });
+                                                    })
+                                            })
                                         }
-                                    }],
-                                    shinyEvolution: true
-                                })
+                                    })
                             })
                     } else {
                         this.setState({
@@ -271,14 +328,24 @@ class PokemonCard extends Component {
         }
     }
 
-    evolvePokemon = async (name) => {
+    evolvePokemon = async (name, shiny, isDefault) => {
         await pokeapi.get(`/pokemon/${name}`)
             .then((response) => {
                 const { sprites } = response.data;
+
+                if (shiny) {
+                    response.data.sprites.front_default = response.data.sprites.front_shiny;
+                }
+                // if (name.includes('-mega')) {
+                if (isDefault) {
+                    this.setState({ mega: true })
+                }
+
                 this.setState({
                     searchResultSprite: sprites.front_default,
                     query: '',
-                    data: response.data
+                    data: response.data,
+                    // mega: name.contains('mega')
                 })
             }).catch((error) => {
                 
@@ -344,8 +411,10 @@ class PokemonCard extends Component {
                                 { pokemon.sprite && (
                                     <div className="pokemonCard__modal__searchResults">
                                     <img src={pokemon.sprite} alt="sprite" />
-                                    { Array(stars).fill(true).map((star, i) => <FaStar key={i} />) }
-                                    <button className="btn" onClick={() => this.evolvePokemon(pokemon.species.name)}>Evolve</button>
+                                    <div className="pokemonCard__modal__stars">
+                                        { Array(stars).fill(true).map((star, i) => <FaStar key={i} />) }
+                                    </div>
+                                    <button className="btn" onClick={() => this.evolvePokemon(pokemon.species.name, pokemon.shiny, pokemon.isDefault)}>Evolve</button>
                                     </div>
                                 )}
                             </div>
