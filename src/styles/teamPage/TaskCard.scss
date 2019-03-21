@@ -36,6 +36,11 @@
 .input__checkbox {
     text-align: right;
     margin-top: 5px;
+    input {
+        &:hover {
+            cursor: pointer;
+        }
+    }
 }
 
 .taskCard__title {

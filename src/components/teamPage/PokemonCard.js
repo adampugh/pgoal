@@ -58,6 +58,9 @@ class PokemonCard extends Component {
             evolutionsArr: [],
             evolutionsSprites: [],
             shinyEvolution: false,
+            mega: false,
+            
+
         });
     };
 
