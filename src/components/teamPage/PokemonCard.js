@@ -128,8 +128,6 @@ class PokemonCard extends Component {
                 skill: skill || '',
                 stars: stars || 0,
             }
-
-            console.log(pokemon);
     
             this.props.startAddPokemon(pokemon, this.props.teamId, this.props.index);
             return this.onCloseModal();
@@ -406,24 +404,24 @@ class PokemonCard extends Component {
                 </Modal>
                 <Modal open={openEvolve} onClose={this.onCloseEvolveModal} center>
                     <div className="modal__content">
-                    <h1>Congrats!</h1>
-                    <div className={evolutionsArr.length < 2 ? "" : evolutionsArr.length > 2 ? "pokemonCard__modal__evolutions--three" : "pokemonCard__modal__evolutions--two"}>
-                    { this.state.evolutionsArr.map((pokemon, i) => {
-                        return (
-                            <div key={i}>
-                                { pokemon.sprite && (
-                                    <div className="pokemonCard__modal__searchResults">
-                                    <img src={pokemon.sprite} alt="sprite" />
-                                    <div className="pokemonCard__modal__stars">
-                                        { Array(stars).fill(true).map((star, i) => <FaStar key={i} />) }
-                                    </div>
-                                    <button className="btn" onClick={() => this.evolvePokemon(pokemon.species.name, pokemon.shiny, pokemon.isDefault)}>Evolve</button>
-                                    </div>
-                                )}
-                            </div>
-                        )
-                    })}
-                    </div>
+                        <h1>Congrats!</h1>
+                        <div className={evolutionsArr.length < 2 ? "" : evolutionsArr.length > 2 ? "pokemonCard__modal__evolutions--three" : "pokemonCard__modal__evolutions--two"}>
+                        { this.state.evolutionsArr.map((pokemon, i) => {
+                            return (
+                                <div key={i}>
+                                    { pokemon.sprite && (
+                                        <div className="pokemonCard__modal__searchResults">
+                                        <img src={pokemon.sprite} alt="sprite" />
+                                        <div className="pokemonCard__modal__stars">
+                                            { Array(stars).fill(true).map((star, i) => <FaStar key={i} />) }
+                                        </div>
+                                        <button className="btn" onClick={() => this.evolvePokemon(pokemon.species.name, pokemon.shiny, pokemon.isDefault)}>Evolve</button>
+                                        </div>
+                                    )}
+                                </div>
+                            )
+                        })}
+                        </div>
                     </div>
                 </Modal>
                 <div className="pokemonCard__icons">

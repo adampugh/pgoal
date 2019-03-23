@@ -32,7 +32,6 @@ class TeamPage extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-    // uid: !!state.uid,
     team: ownProps.location.state ? state.team.teams.filter(team => ownProps.location.state.team.id === team.id)[0] : null,
 });
 
