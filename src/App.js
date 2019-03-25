@@ -27,6 +27,7 @@ export const store = createStore(
 export const history = createHistory();
 
 class App extends Component {
+
     render() {
         return (
             <Provider store={store} >
