@@ -28,7 +28,7 @@ class Task extends Component {
         const { index, pokemonId, teamId, startUpdateTaskText, pokemonIndex } = this.props;
         const { taskText } = this.state;
 
-        if (taskText.length > 0) {
+        if (taskText.trim().length > 0) {
             startUpdateTaskText(pokemonId, teamId, taskText, index, pokemonIndex)
         }
 
