@@ -4,8 +4,8 @@ self.__precacheManifest = [
     "url": "/pgoal/static/media/bulbasaur.7311c6cc.png"
   },
   {
-    "revision": "4dfd7cfa6c277389d126",
-    "url": "/pgoal/static/css/main.38320100.chunk.css"
+    "revision": "b2b3007a4d9d5065d08b",
+    "url": "/pgoal/static/css/main.4f574037.chunk.css"
   },
   {
     "revision": "afc5f867302a4844aeaf",
@@ -20,12 +20,12 @@ self.__precacheManifest = [
     "url": "/pgoal/static/js/2.42bd7122.chunk.js"
   },
   {
-    "revision": "387b5a7db6417f68fdbcbf9befd47069",
-    "url": "/pgoal/static/media/logo.387b5a7d.png"
+    "revision": "326f813fd4633073fd60668a1a63ab0e",
+    "url": "/pgoal/static/media/logo.326f813f.png"
   },
   {
-    "revision": "0dfe313b500dde81f2a9780f7d2c6879",
-    "url": "/pgoal/static/media/pikachu.0dfe313b.png"
+    "revision": "8368b470754bb1488a7615c2b0412760",
+    "url": "/pgoal/static/media/pikachu.8368b470.png"
   },
   {
     "revision": "5aca14c062cc5cfead0230cefe902559",
@@ -56,8 +56,8 @@ self.__precacheManifest = [
     "url": "/pgoal/static/media/oddish.af752d34.png"
   },
   {
-    "revision": "4dfd7cfa6c277389d126",
-    "url": "/pgoal/static/js/main.4dfd7cfa.chunk.js"
+    "revision": "b2b3007a4d9d5065d08b",
+    "url": "/pgoal/static/js/main.b2b3007a.chunk.js"
   },
   {
     "revision": "0a8d1bd9add966e9cbc4694289c0eaf1",
@@ -100,6 +100,10 @@ self.__precacheManifest = [
     "url": "/pgoal/static/media/pikachuloading.e2548b49.gif"
   },
   {
+    "revision": "756f8d222f01664cfdc5f4f9e05e43d7",
+    "url": "/pgoal/static/media/homepagebg.756f8d22.webp"
+  },
+  {
     "revision": "54c618cacf93da0fd7ce52b9c4f1a2a6",
     "url": "/pgoal/static/media/homepagebg.54c618ca.png"
   },
@@ -108,7 +112,7 @@ self.__precacheManifest = [
     "url": "/pgoal/static/css/2.e18ea423.chunk.css"
   },
   {
-    "revision": "f8fa82cb20813597a9787d775ab291ef",
+    "revision": "833a430f4ba796e3667e381237f82022",
     "url": "/pgoal/index.html"
   }
 ];
