@@ -25,7 +25,6 @@ const HomePage = (props) => {
             <Navbar />
             <div className="homePage__hero">
                 <div className="container homePage__hero__container">
-                    {/* <Fade bottom> */}
                     <ScrollAnimation animateIn="fadeInUp">
                     <div className="homePage__hero__block">
                         <h1 className="heading">Evolve Your Skills!</h1>
@@ -45,7 +44,6 @@ const HomePage = (props) => {
                         </div>
                     </div>
                     </ScrollAnimation>
-                    {/* </Fade> */}
                 </div>
                 <div className="homePage__hero__overlay"></div>
             </div>
