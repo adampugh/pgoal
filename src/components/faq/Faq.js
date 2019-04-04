@@ -42,7 +42,6 @@ class Faq extends Component {
                                 <ScrollAnimation animateIn="fadeIn">
                                     <h1 className="heading">How do stages work?</h1>
                                     <p>Each pokémon has between 7 and 9 stages depending on the number of evolutions the pokémon has. Pokémon start as an egg and continue through normal evolutions. At the maximum stage pokémon can collect up to five stars.</p>
-                                    
                                 </ScrollAnimation>
                             </div>
                         </div>
