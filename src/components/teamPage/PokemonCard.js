@@ -265,8 +265,7 @@ class PokemonCard extends Component {
                                                 },
                                                 shiny: true
                                             }
-                                        ],
-                                        // shinyEvolution: true
+                                        ]
                                     })
                                 }
 
@@ -337,7 +336,7 @@ class PokemonCard extends Component {
                 if (shiny) {
                     response.data.sprites.front_default = response.data.sprites.front_shiny;
                 }
-                // if (name.includes('-mega')) {
+
                 if (isDefault) {
                     this.setState({ mega: true })
                 }
@@ -345,11 +344,10 @@ class PokemonCard extends Component {
                 this.setState({
                     searchResultSprite: sprites.front_default,
                     query: '',
-                    data: response.data,
-                    // mega: name.contains('mega')
+                    data: response.data
                 })
             }).catch((error) => {
-                
+                console.log(error);
             })
 
         this.addPokemon();
@@ -370,23 +368,23 @@ class PokemonCard extends Component {
                             ? <h1>Please delete current Pokemon</h1>
                             : (
                                 <>
-                                <form>
-                                    <input 
-                                        placeholder="Search for a pokemon..."
-                                        onChange={(e) => this.handleInputChange(e)}
-                                        value={query}
-                                    />
-                                    <button className="btn" onClick={e => this.searchForPokemon(e)}><FaSearch /></button>
-                                </form>
-                                <div>
-                                    { searchResultSprite && (
-                                        <div className="pokemonCard__modal__searchResults">
-                                            <img src={searchResultSprite} alt="sprite"/>
-                                            <button className="btn" onClick={this.addPokemon}>Add {this.state.data.name}</button>
-                                        </div>
-                                    )}
-                                    { noSearchResults && <h1>Sorry no search results</h1>}
-                                </div>
+                                    <form>
+                                        <input 
+                                            placeholder="Search for a pokemon..."
+                                            onChange={(e) => this.handleInputChange(e)}
+                                            value={query}
+                                        />
+                                        <button className="btn" onClick={e => this.searchForPokemon(e)}><FaSearch /></button>
+                                    </form>
+                                    <div>
+                                        { searchResultSprite && (
+                                            <div className="pokemonCard__modal__searchResults">
+                                                <img src={searchResultSprite} alt="sprite"/>
+                                                <button className="btn" onClick={this.addPokemon}>Add {this.state.data.name}</button>
+                                            </div>
+                                        )}
+                                        { noSearchResults && <h1>Sorry no search results</h1>}
+                                    </div>
                                 </>
                             )
                     }
@@ -411,11 +409,11 @@ class PokemonCard extends Component {
                                 <div key={i}>
                                     { pokemon.sprite && (
                                         <div className="pokemonCard__modal__searchResults">
-                                        <img src={pokemon.sprite} alt="sprite" />
-                                        <div className="pokemonCard__modal__stars">
-                                            { Array(stars).fill(true).map((star, i) => <FaStar key={i} />) }
-                                        </div>
-                                        <button className="btn" onClick={() => this.evolvePokemon(pokemon.species.name, pokemon.shiny, pokemon.isDefault)}>Evolve</button>
+                                            <img src={pokemon.sprite} alt="sprite" />
+                                            <div className="pokemonCard__modal__stars">
+                                                { Array(stars).fill(true).map((star, i) => <FaStar key={i} />) }
+                                            </div>
+                                            <button className="btn" onClick={() => this.evolvePokemon(pokemon.species.name, pokemon.shiny, pokemon.isDefault)}>Evolve</button>
                                         </div>
                                     )}
                                 </div>

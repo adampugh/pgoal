@@ -26,23 +26,23 @@ const HomePage = (props) => {
             <div className="homePage__hero">
                 <div className="container homePage__hero__container">
                     <ScrollAnimation animateIn="fadeInUp">
-                    <div className="homePage__hero__block">
-                        <h1 className="heading">Evolve Your Skills!</h1>
-                        <div className="homePage__hero__block__panels__text">
-                            <p>Gamify your progress by creating pokémon teams and watch them develop as you do!</p>
-                            <button className="btn" onClick={props.startLogin}>
-                                Login <img src={Google} alt="google logo" />
-                            </button>
+                        <div className="homePage__hero__block">
+                            <h1 className="heading">Evolve Your Skills!</h1>
+                            <div className="homePage__hero__block__panels__text">
+                                <p>Gamify your progress by creating pokémon teams and watch them develop as you do!</p>
+                                <button className="btn" onClick={props.startLogin}>
+                                    Login <img src={Google} alt="google logo" />
+                                </button>
+                            </div>
+                            <div className="homePage__hero__block__panels">
+                                <picture>
+                                    <img src={Pikachu} alt="pikachu" className="homePage__hero__block__panels__img--pikachu"/>
+                                </picture>
+                                
+                                <img src={Mockup} alt="app mockup" className="homePage__hero__block__panels__img--mockup"/>
+                                <img src={Squirtle} alt="squirtle" className="homePage__hero__block__panels__img--squirtle"/>
+                            </div>
                         </div>
-                        <div className="homePage__hero__block__panels">
-                            <picture>
-                                <img src={Pikachu} alt="pikachu" className="homePage__hero__block__panels__img--pikachu"/>
-                            </picture>
-                            
-                            <img src={Mockup} alt="app mockup" className="homePage__hero__block__panels__img--mockup"/>
-                            <img src={Squirtle} alt="squirtle" className="homePage__hero__block__panels__img--squirtle"/>
-                        </div>
-                    </div>
                     </ScrollAnimation>
                 </div>
                 <div className="homePage__hero__overlay"></div>
@@ -78,12 +78,10 @@ const HomePage = (props) => {
             </div>
             <div className="homePage__bottom__bg">
                 <div className="homePage__bottom__bg__overlay"></div>
-                
             </div>
             <Footer />
         </>
     )
-    
 }
 
 export default connect(null, { startLogin })(HomePage);

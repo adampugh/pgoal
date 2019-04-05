@@ -23,7 +23,6 @@ class Faq extends Component {
                                 <ScrollAnimation animateIn="fadeIn">
                                     <h1 className="heading">Which pokémon generations are available?</h1>
                                     <p>All generations included in the pokéapi can be found on the pokéskills. You can find the pokéapi documentation here.</p>
-                                    
                                 </ScrollAnimation>
                             </div>
                             <div className="homePage__second__panels__text panel">
