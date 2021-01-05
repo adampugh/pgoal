@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "animate.css": "^3.7.0",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "firebase": "^5.8.5",
     "gh-pages": "^2.0.1",
     "history": "^4.7.2",
