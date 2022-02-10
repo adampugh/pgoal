@@ -8,7 +8,7 @@
     "firebase": "^5.8.5",
     "gh-pages": "^2.0.1",
     "history": "^4.7.2",
-    "node-sass": "^4.11.0",
+    "node-sass": "^7.0.0",
     "normalize.css": "^8.0.1",
     "pokemon-random-name": "^1.0.4",
     "rc-progress": "^2.3.0",
